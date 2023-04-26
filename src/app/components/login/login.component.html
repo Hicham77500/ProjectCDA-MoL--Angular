@@ -1,28 +1,56 @@
-<form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
-  <div class="form-floating mb-3">
-    <input
-      ngModel
-      name="username"
-      type="text"
-      class="form-control"
-      id="floatingInput"
-      placeholder="identifiant"
-      required
-    />
-    <label for="floatingInput">Identifiant</label>
-  </div>
-  <div class="form-floating">
-    <input
-      ngModel
-      name="password"
-      type="password"
-      class="form-control"
-      id="floatingPassword"
-      placeholder="mot de passe"
-      required
-    />
-    <label for="floatingPassword">Mot de passe</label>
-    
-  </div>
-  <button type="submit" [disabled]="loginForm.invalid">Envoyer</button>
-</form>
+<div class="container py-4">
+	<div class="container ">
+		<form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
+			<!-- Section: Design Block -->
+
+			<section class=" text-center text-lg-start">
+
+				<div class="card mb-3">
+					<div class="row g-0 d-flex align-items-center">
+						<div class="col-lg-4 d-none d-lg-flex">
+							<img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg"
+								alt="Trendy Pants and Shoes"
+								class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+						</div>
+						<div class="col-lg-8">
+							<div class="card-body py-5 px-md-5">
+
+								<!-- Email input -->
+								<div class="form-outline mb-4">
+									<label class="form-label" for="form2Example1">Identifiant</label>
+									<input ngModel name="username" type="email" id="form2Example1" class="form-control"
+										placeholder="identifiant" required />
+								</div>
+
+								<!-- Password input -->
+								<div class="form-outline mb-4">
+									<label class="form-label" for="form2Example2">Mot de passe</label>
+									<input ngModel name="password" type="password" id="form2Example2"
+										class="form-control" placeholder="mot de passe" required />
+								</div>
+
+								<!-- 2 column grid layout for inline styling -->
+								<div class="row mb-4">
+									<div class="col">
+										<!-- Simple link -->
+										<a href="#!">Mot de passe oublié?</a>
+									</div>
+									<div class="col">
+										<!-- Simple link -->
+										<a routerLink="/register">Créer un compte?</a>
+									</div>
+								</div>
+
+								<!-- Submit button -->
+								<button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="loginForm.invalid">Sign in</button>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</form>
+	</div>
+</div>
