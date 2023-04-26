@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Moment Of Life</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register" *ngIf="!userLoggedIn">Créer un compte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="login" *ngIf="!userLoggedIn">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" *ngIf="userLoggedIn">Profil</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="admin" *ngIf="userAdmin">Admin</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="login" *ngIf="userLoggedIn">Déconnexion</a>
+          </li>
+
+            
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Recherche</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>

@@ -1,0 +1,90 @@
+<form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+  <!-- <label for="floatingInput">Genre</label> -->
+  <div class="form-floating mb-3">
+    <label for="pet-select">Vous êtes : </label>
+    <select ngModel name="genre" id="pet-select">
+      <option value="">--Please choose an option--</option>
+      <option ngModel value="homme">Monsieur</option>
+      <option ngModel value="femme">Madame</option>
+
+    </select>
+  </div>
+  <label for="floatingInput">Nom</label>
+  <div class="form-floating mb-3">
+    <input ngModel name="lastname" type="text" class="form-control" id="floatingInput" placeholder="nom" required />
+  </div>
+  <label for="floatingInput">Prénom</label>
+  <div class="form-floating mb-3">
+    <input ngModel name="firstname" type="text" class="form-control" id="floatingInput" placeholder="prenom" required />
+  </div>
+  <label for="floatingInput">Date de naissance</label>
+  <div class="form-floating mb-3">
+    <input ngModel name="firstname" type="date" class="form-control" id="floatingInput" placeholder="prenom" required />
+  </div>
+  <!-- <label for="floatingInput">Code postal</label>
+  <div class="form-floating mb-3">
+    <input
+      ngModel
+      name="postalcode"
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Code postal"
+    />
+  </div>
+  <label for="floatingInput">Ville</label>
+  <div class="form-floating mb-3">
+    <input
+      ngModel
+      name="city"
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Ville"
+    />
+  </div>
+  <label for="floatingInput">Numero de tel</label>
+  <div class="form-floating mb-3">
+    <input
+      ngModel
+      name="numtel"
+      type="text"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Numero de tel"
+    />
+  </div> -->
+
+  <label for="floatingInput">Pseudo</label>
+  <div class="form-floating mb-3">
+    <input ngModel name="username" type="text" class="form-control" id="floatingInput" placeholder="pseudo" required />
+  </div>
+  <label for="floatingInput">Email</label>
+  <div class="form-floating mb-3">
+    <input ngModel name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+      required />
+  </div>
+  <label for="floatingPassword">Password</label>
+  <div class="form-floating">
+    <input ngModel name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password"
+      #passwordInput="ngModel" required />
+    <span class="help-block" style="color:red;" *ngIf="passwordInput.invalid && passwordInput.touched">Veuillez entrer
+      un mot de passe</span>
+  </div>
+  <label for="floatingPassword">Confirmer le mot de passe</label>
+  <div class="form-floating">
+    <input ngModel name="plainPassword" type="password" class="form-control" id="floatingPassword"
+      placeholder="Confirmer le mot de passe" #confirmPasswordInput="ngModel" required />
+    <span class="help-block" style="color:red;"
+      *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched">Veuillez confirmer le mot de passe</span>
+    <span class="help-block" style="color:red;"
+      *ngIf="confirmPasswordInput.value != passwordInput.value && confirmPasswordInput.value.length !> 0 ">les mots de
+      passe ne correspondent pas</span>
+    <span class="help-block" style="color:green;"
+      *ngIf="confirmPasswordInput.value == passwordInput.value && confirmPasswordInput.value.length != 0">les mots de
+      passe correspondent</span>
+  </div>
+
+  <button type="submit"
+    [disabled]="registerForm.invalid || confirmPasswordInput.value !== passwordInput.value ">Envoyer</button>
+</form>

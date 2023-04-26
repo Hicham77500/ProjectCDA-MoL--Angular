@@ -1,0 +1,67 @@
+
+<div class="container border">
+
+    <br>
+    <H1 class="text-center">Liste des utilisateurs</H1>
+    <div class="mb-3 float-left">
+        <a href="/admin/addPost" class="btn btn-success" data-toggle="modal" >
+            <i class="fa fa-plus">Ajouter un Post</i>
+          </a>
+    </div>
+    
+    <div class="mb-3 float-right">
+        <div class="btn-group mr-2">
+  
+          <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
+            <!-- On appelle la fonction search  -->
+            <input name="searchTerm" class="form-control mr-sm-2" ngModel
+              (ngModelChange)="searchPosts(searchForm.value.searchTerm)" type="search" placeholder="Rechercher un post">
+            </form>
+           
+        </div>
+        <div class="btn-group">
+          <button type="button" (click)="getPosts()" class="btn btn-info">
+            <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
+          </button>
+  
+        </div>
+  
+      </div>
+    <br>
+    <table id="table_id" class="table ">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">idUser</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Date de publication</th>
+                <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of posts" >
+                <th scope="row"> {{item.idPost}}</th>
+                <td scope="row">{{item.idUser}}</td>
+                <td scope="row" *ngIf="item.listPictures[0]"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+                  src="{{urlPict+item.listPictures[0].urlPicture}}" alt=""></td>
+            
+            
+                
+
+                <td scope="row">{{item.date|date }}</td>
+
+                <td>
+                  <div class="btn-group">
+                    <!-- <button class="btn btn-outline-info" (click)="onEditUser(appUser)">
+                      <i class="fas fa-edit"></i>
+                    </button> -->
+                    <button class="btn btn-outline-danger" (click)="onDeletePost(item.idPost)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

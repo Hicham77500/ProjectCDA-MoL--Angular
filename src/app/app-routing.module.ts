@@ -1,7 +1,101 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
+import { CanActivateFn, RouterModule, Routes } from '@angular/router';
+import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
+import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
 
-const routes: Routes = [];
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register/register.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { ListUserComponent } from './components/admin/user/list-user/list-user.component';
+import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
+import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.component';
+import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
+
+const authGuardFn: CanActivateFn = () => {
+  const authService = inject(AuthenticationService);
+  return authService.isLoggedInAsAdmin();
+}
+const authGuardAdminFn: CanActivateFn = () => {
+  const authService = inject(AuthenticationService);
+
+  return authService.isLoggedInAsAdmin();
+
+
+}
+const routes: Routes = [
+  {
+    path: '',
+    component: NavbarComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent
+      }]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  }, {
+    path: 'register',
+    component: RegisterComponent
+  },
+
+  {
+    path: 'admin',
+    component: DashboardComponent,
+    // canActivate:[authGuardAdminFn]
+    children: [
+      {
+        path: 'listUser',
+        component: ListUserComponent,
+        // canActivate:[authGuardAdminFn]
+
+      }, {
+        path: 'addUser',
+        component: AddUserComponent,
+        canActivate: [authGuardAdminFn]
+
+      }, {
+        path: 'editUser/:id',
+        component: EditUserComponent,
+        canActivate: [authGuardAdminFn]
+
+      }, {
+        path: 'listUser/:id',
+        component: ListUserComponent,
+        canActivate: [authGuardAdminFn]
+
+      },
+      {
+        path: 'listPost',
+        component: ListPostComponent,
+        // canActivate:[authGuardAdminFn]
+
+      }, {
+        path: 'addPost',
+        component: AddPostComponent,
+        canActivate: [authGuardAdminFn]
+
+      }, {
+        path: 'editPost/:id',
+        component: EditPostComponent,
+        canActivate: [authGuardAdminFn]
+
+      }, {
+        path: 'listPost/:id',
+        component: ListPostComponent,
+        canActivate: [authGuardAdminFn]
+
+      }
+    ]
+  }
+
+
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

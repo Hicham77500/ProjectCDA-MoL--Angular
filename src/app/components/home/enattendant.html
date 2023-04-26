@@ -1,0 +1,24 @@
+<br>
+<br>
+<br>
+
+    <!-- Gallery -->
+<div class="row"  >
+    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let item of posts">
+      <a href="/"><img *ngIf="item.idPost % 2 == 0"
+        src="{{urlPict+item.listPictures[0].urlPicture}}"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt="Boat on Calm Water"
+      /></a>
+  
+      <img *ngIf="item.idPost % 2 != 0"
+        src="{{urlPict+item.listPictures[0].urlPicture}}"
+        class="w-100 shadow-1-strong rounded mb-4"
+        alt="Wintry Mountain Landscape"
+      />
+    </div>
+  
+    
+    
+  </div>
+  <!-- Gallery -->

@@ -1,0 +1,41 @@
+<div class="container">
+  <h2 class="text-center">Modifier l'utilisateur : {{editUser.username}}</h2>
+  <a href="/admin" class="btn btn-primary">Retour</a>
+  <div class="border">
+    <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+      <select name="genre" [(ngModel)]="editUser.genre">
+        <option value="">{{editUser.genre}}</option>
+        <option value="homme">Monsieur</option>
+        <option value="femme">Madame</option>
+      </select>
+      <select name="role" [(ngModel)]="editUser.role">
+        <option value="">{{editUser.role}}</option>
+        <option value="ROLE_SUPER_ADMIN">Admin</option>
+        <option value="ROLE_USER">User</option>
+      </select>
+      <div class="form-floating mb-3">
+        <label for="floatingInput">Pseudo</label>
+        <input [(ngModel)]="editUser.username" name="username" type="text" class="form-control" />
+      </div>
+      <div class="form-floating mb-3">
+        <label for="floatingInput">Email address</label>
+        <input [(ngModel)]="editUser.email" name="email" type="email" class="form-control" />
+      </div>
+
+      <div class="form-floating mb-3">
+        <label for="floatingInput">Nom</label>
+        <input [(ngModel)]="editUser.lastname" name="lastname" type="text" class="form-control" />
+      </div>
+      <div class="form-floating mb-3">
+        <label for="floatingInput">prenom</label>
+        <input [(ngModel)]="editUser.firstname" name="firstname" type="text" class="form-control" />
+      </div>
+      <div class="form-floating mb-3">
+        <label for="floatingInput">Date de naissance</label>
+        <input [(ngModel)]="editUser.age" name="age" type="date" class="form-control" id="floatingInput"
+          placeholder="prenom" required />
+      </div>
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 class="text-center">Créer un nouveau post</h2>
+  <a href="/admin/listPost" class="btn btn-primary">Retour</a>
+  <div class="border">
+    <form #addPostForm="ngForm" (ngSubmit)="onAddPost(addPostForm.value)">
+
+      <input type="text"[hidden]="true" name="idUser" ngModel="{{user.uid}}">
+
+      <div class="input-group-mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Photo de profil</span>
+        </div>
+        <div class="custom-file">
+          <input type="file" name="profileImage" (change)="onProfileImageChange($event)"
+            class="custom-file-input">
+          <label class="custom-file-label">
+            <span [hidden]="!fileName">{{fileName}}</span>
+            <span [hidden]="fileName">-- Choisir une photo --</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <label for="floatingInput">Description</label>
+        <textarea ngModel name="description" class="form-control" id="floatingInput"
+          placeholder="la description de votre choix" required cols="30" rows="10"></textarea>
+
+      </div>
+
+
+
+  
+
+
+      <button type="submit" [disabled]="addPostForm.invalid  ">Envoyer</button>
+    </form>
+  </div>
+</div>
