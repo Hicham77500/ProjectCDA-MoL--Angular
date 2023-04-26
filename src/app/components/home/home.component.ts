@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Post } from 'src/app/models/post';
+import { User } from 'src/app/models/user';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { AppSettings } from 'src/app/settings/app.settings';
@@ -17,6 +18,7 @@ declare var window:any;
 })
 export class HomeComponent implements OnInit{
   formModal:any;
+  declare userLoggedIn: User;
   declare posts: any;
   declare selectedPost:any;
   declare public refreshing: boolean;
@@ -27,6 +29,8 @@ export class HomeComponent implements OnInit{
       document.getElementById("myModal")
     );
     this.getPosts();
+    this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn') as any);
+    console.log(this.userLoggedIn)
   }
   constructor(
     private postService: PostService,
@@ -35,7 +39,7 @@ export class HomeComponent implements OnInit{
     private route: ActivatedRoute,
     private notificationService: NotificationService
   ) {
-
+    
   }
   openModal(post : Post){
     this.selectedPost = post;
