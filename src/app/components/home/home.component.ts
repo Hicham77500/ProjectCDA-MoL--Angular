@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit{
   private subscription: Subscription[] = [];
   ngOnInit(): void {
     this.formModal = new window.bootstrap.Modal(
-      document.getElementById("exampleModal")
+      document.getElementById("myModal")
     );
     this.getPosts();
   }

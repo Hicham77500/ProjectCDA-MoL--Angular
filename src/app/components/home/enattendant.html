@@ -22,3 +22,70 @@
     
   </div>
   <!-- Gallery -->
+
+
+
+
+  <div class="container border">
+    <div class="row">
+      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let item of posts">
+        <a (click)="openModal(item)"><img *ngIf="item.idPost % 2 == 0" src="{{urlPict+item.listPictures[0].urlPicture}}"
+            class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" /></a>
+  
+        <img *ngIf="item.idPost % 2 != 0" src="{{urlPict+item.listPictures[0].urlPicture}}"
+          class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
+      </div>
+  
+  
+  
+    </div>
+  </div>
+  <!-- Modal gallery -->
+  <section class="">
+  
+  
+    <!-- Section: Modals -->
+    <section class="">
+      <!-- Modal 1 -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="ratio ratio-4x3">
+              
+  
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal 2 -->
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/wTcNtgA6gHs" title="YouTube video" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal 3 -->
+      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/vlDzYIIOYmM" title="YouTube video" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: Modals -->
+  </section>
+  <!-- Modal gallery -->
+  
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+  
+  
