@@ -1,71 +1,71 @@
-
 <div class="container border">
 
-    <br>
-    <H1 class="text-center">Liste des utilisateurs</H1>
-    <div class="mb-3 float-left">
-        <a href="/admin/addUser" class="btn btn-success" data-toggle="modal" >
-            <i class="fa fa-plus">Ajouter un Utilisateur</i>
-          </a>
+  <br>
+  <H1 class="text-center">Liste des utilisateurs</H1>
+  <div class="mb-3 float-left">
+    <a href="/admin/addUser" class="btn btn-success" data-toggle="modal">
+      <i class="fa fa-plus">Ajouter un Utilisateur</i>
+    </a>
+  </div>
+
+  <div class="mb-3 float-right">
+    <div class="btn-group mr-2">
+
+      <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
+        <!-- On appelle la fonction search  -->
+        <input name="searchTerm" class="form-control mr-sm-2" ngModel
+          (ngModelChange)="searchUsers(searchForm.value.searchTerm)" type="search" placeholder="Rechercher un user">
+      </form>
+
     </div>
-    
-    <div class="mb-3 float-right">
-        <div class="btn-group mr-2">
-  
-          <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
-            <!-- On appelle la fonction search  -->
-            <input name="searchTerm" class="form-control mr-sm-2" ngModel
-              (ngModelChange)="searchUsers(searchForm.value.searchTerm)" type="search" placeholder="Rechercher un user">
-            </form>
-           
-        </div>
-        <div class="btn-group">
-          <button type="button" (click)="getUsers()" class="btn btn-info">
-            <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
-          </button>
-  
-        </div>
-  
-      </div>
-    <br>
-    <table id="table_id" class="table ">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Email</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Username</th>
-                <th scope="col">LastName</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">Date naissance</th>
-                <th scope="col">ACTION</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of users">
-                <th scope="row"> {{item.uid}}</th>
-                <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
-                  src="{{urlPict+item.profileImageURL}}" alt=""></td>
-                <td scope="row">{{item.email}}</td>
-                <td scope="row">{{item.genre}}</td>
-                <td scope="row">{{item.username}}</td>
-                <td scope="row">{{item.lastname}}</td>
-                <td scope="row">{{item.firstname}}</td>
-                <td scope="row">{{item.age|date }}</td>
+    <div class="btn-group">
+      <button type="button" (click)="getUsers()" class="btn btn-info">
+        <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
+      </button>
 
-                <td>
-                  <div class="btn-group">
-                    <!-- <button class="btn btn-outline-info" (click)="onEditUser(appUser)">
-                      <i class="fas fa-edit"></i>
-                    </button> -->
-                    <button class="btn btn-outline-danger" (click)="onDeleteUser(item.uid)">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </td>
-            </tr>
-        </tbody>
+    </div>
 
-    </table>
+  </div>
+  <br>
+  <table id="table_id" class="table ">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Email</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Username</th>
+        <th scope="col">LastName</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">Date naissance</th>
+        <th scope="col">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of users">
+        <th scope="row"> {{item.uid}}</th>
+        <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+            src="{{urlPict+item.profileImageURL}}" alt=""></td>
+        <td scope="row">{{item.email}}</td>
+        <td scope="row">{{item.genre}}</td>
+        <td scope="row">{{item.username}}</td>
+        <td scope="row">{{item.lastname}}</td>
+        <td scope="row">{{item.firstname}}</td>
+        <td scope="row">{{item.age|date }}</td>
+
+        <td>
+          <div class="btn-group">
+            <a routerLink="/admin/editUser/{{item.uid}}"
+              class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
+            </a>
+
+            <button class="btn btn-danger" (click)="onDeleteUser(item.uid)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
 </div>

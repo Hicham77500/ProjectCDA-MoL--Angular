@@ -8,7 +8,7 @@ import { AppSettings } from 'src/app/settings/app.settings';
   providedIn: 'root'
 })
 export class UserService {
-
+ 
 
 
 
@@ -33,6 +33,13 @@ export class UserService {
   public deleteUser(id: number|null) {
     return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/deleteUser/" + id);
   }
+  updateProfileImage(formData: FormData) {
+    console.log(formData)
+    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/updateProfileImage', formData)
+  }
+
+
+
   public addUsersToLocalCache(users: User[]) : void {
     localStorage.setItem('users', JSON.stringify(users));
   }

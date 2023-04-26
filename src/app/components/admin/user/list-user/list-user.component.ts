@@ -55,6 +55,7 @@ export class ListUserComponent implements OnInit {
 
     );
   }
+  
   onDeleteUser(id: number) {
 
     this.subscription.push(
@@ -68,8 +69,8 @@ export class ListUserComponent implements OnInit {
         }
       )
     )
-  } 
-  
+  }
+
   public searchUsers(searchTerm: string): void {
     // console.log(searchTerm);
 
@@ -79,9 +80,9 @@ export class ListUserComponent implements OnInit {
         user.lastname.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
         user.username.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
         ||
-        user.uid.toString().toLocaleLowerCase().indexOf(searchTerm.toLowerCase())!== -1
+        user.uid.toString().toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
 
-        ) {
+      ) {
 
         results.push(user);
       }

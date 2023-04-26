@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { AppSettings } from 'src/app/settings/app.settings';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,7 +15,11 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  public editUser = new User() ;
+  urlPict = AppSettings.IMG_PROFIL;
+  public editUser = new User();
+  declare public fileName: string;
+  declare public pictureFile: File;
+  private subscription: Subscription[] = [];
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
@@ -36,7 +42,7 @@ export class EditUserComponent implements OnInit {
     )
   }
   onEdit(user: User) {
- 
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.userService.editUser(id, user).subscribe(
       (data: any) => {
@@ -50,5 +56,28 @@ export class EditUserComponent implements OnInit {
 
 
   }
+  public onProfileImageChange(event: any, username: string): void {
 
+
+    const files: File[] = event.target.files;
+    let file: File = event.target.files[event.target.files.length - 1] as File;
+
+    this.fileName = file.name;
+    this.pictureFile = file;
+    console.log(this.fileName);
+
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('profileImage', this.pictureFile);
+    this.subscription.push(
+    this.userService.updateProfileImage(formData).subscribe(
+      (data: any) => {
+        console.log(data);
+        
+        this.editUser = data;
+
+      }
+    )
+    )
+  }
 }
