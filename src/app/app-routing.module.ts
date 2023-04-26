@@ -15,6 +15,7 @@ import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.
 import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
 import { RegisterComponent } from './components/register/register.component';
 
+
 const authGuardFn: CanActivateFn = () => {
   const authService = inject(AuthenticationService);
   return authService.isLoggedInAsUser();
