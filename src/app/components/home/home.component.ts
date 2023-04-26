@@ -49,10 +49,7 @@ export class HomeComponent implements OnInit{
     this.subscription.push(
       this.postService.getPosts().subscribe(
         (data: any) => {
-          
           this.posts = data;
-          console.log(data);
-          this.notificationService.notify(NotificationType.SUCCESS, `${data.length} Utilisateur(s) chargé(s) avec succès`)
         },
         (err: HttpErrorResponse) => {
           this.refreshing = false;

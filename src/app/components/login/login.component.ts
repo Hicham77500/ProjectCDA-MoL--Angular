@@ -53,8 +53,11 @@ export class LoginComponent implements OnInit {
       },
 
       complete: () => {
-
-        this.router.navigateByUrl("/admin")
+        if(this.authenticationService.isLoggedInAsAdmin()){
+          this.router.navigateByUrl("/admin")
+        }else if(this.authenticationService.isLoggedInAsUser()){
+          this.router.navigateByUrl("")
+        }
 
 
       }

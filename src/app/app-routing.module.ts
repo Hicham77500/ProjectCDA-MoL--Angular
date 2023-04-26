@@ -4,7 +4,7 @@ import { AddUserComponent } from './components/admin/user/add-user/add-user.comp
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
 
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register/register.component';
+
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -13,10 +13,11 @@ import { ListUserComponent } from './components/admin/user/list-user/list-user.c
 import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
 import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.component';
 import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const authGuardFn: CanActivateFn = () => {
   const authService = inject(AuthenticationService);
-  return authService.isLoggedInAsAdmin();
+  return authService.isLoggedInAsUser();
 }
 const authGuardAdminFn: CanActivateFn = () => {
   const authService = inject(AuthenticationService);
@@ -46,12 +47,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: DashboardComponent,
-    // canActivate:[authGuardAdminFn]
+    canActivate:[authGuardAdminFn],
     children: [
       {
         path: 'listUser',
         component: ListUserComponent,
-        // canActivate:[authGuardAdminFn]
+        canActivate:[authGuardAdminFn]
 
       }, {
         path: 'addUser',
@@ -72,7 +73,7 @@ const routes: Routes = [
       {
         path: 'listPost',
         component: ListPostComponent,
-        // canActivate:[authGuardAdminFn]
+        canActivate:[authGuardAdminFn]
 
       }, {
         path: 'addPost',

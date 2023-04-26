@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
-import { RegisterComponent } from './components/register/register/register.component';
+
 import { NotificationModule } from './services/notification/notification.module';
 
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
@@ -20,6 +20,7 @@ import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.
 import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
 import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
 import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
