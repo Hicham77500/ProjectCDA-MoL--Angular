@@ -10,10 +10,12 @@ export class User {
     public age: Date;
     public roles: string[];
     public role: string;
+    public profileImageURL: string;
     constructor(
         ) {
         this.uid = 0;
         this.email = '';
+        this.profileImageURL = '';
         this.plainPassword = '';
         this.password = '';
         this.genre = '';

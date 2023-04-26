@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
 import { User } from 'src/app/models/user';
 import { AppSettings } from 'src/app/settings/app.settings';
 
@@ -30,7 +31,7 @@ export class UserService {
     return this.http.put<User | HttpErrorResponse>(AppSettings.APP_URL + "/updateUser/" + id, user);
   }
   public deleteUser(id: number|null) {
-    return this.http.delete<User | HttpErrorResponse>(AppSettings.APP_URL + "/deleteUser/" + id);
+    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/deleteUser/" + id);
   }
   public addUsersToLocalCache(users: User[]) : void {
     localStorage.setItem('users', JSON.stringify(users));

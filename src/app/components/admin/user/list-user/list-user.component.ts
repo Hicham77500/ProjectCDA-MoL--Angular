@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
+import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { AppSettings } from 'src/app/settings/app.settings';
 
 @Component({
   selector: 'app-list-user',
@@ -14,6 +16,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
+  urlPict = AppSettings.IMG_PROFIL;
   declare users: any;
   declare public refreshing: boolean;
   private subscription: Subscription[] = [];
@@ -29,10 +32,7 @@ export class ListUserComponent implements OnInit {
   ngOnInit(): void {
 
     this.getUsers();
-    if (this.route.snapshot.paramMap.get('id') != null) {
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.remove(id);
-    }
+
 
   }
   public getUsers() {
@@ -55,21 +55,21 @@ export class ListUserComponent implements OnInit {
 
     );
   }
-  remove(id: number) {
+  onDeleteUser(id: number) {
 
     this.subscription.push(
       this.userService.deleteUser(id).subscribe(
-        () => {
+        (data: CustomHttpResponse) => {
           this.notificationService.notify(NotificationType.SUCCESS, `L'utilisateur a bien été supprimé avec succes`);
-          this.router.navigateByUrl('admin')
-
+          this.getUsers();
         },
         (errorResponse: HttpErrorResponse) => {
-          this.notificationService.notify(NotificationType.ERROR, errorResponse.error['message']);
+          this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
         }
       )
     )
-  }
+  } 
+  
   public searchUsers(searchTerm: string): void {
     // console.log(searchTerm);
 

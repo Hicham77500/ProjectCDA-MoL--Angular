@@ -4,7 +4,7 @@
     <br>
     <H1 class="text-center">Liste des utilisateurs</H1>
     <div class="mb-3 float-left">
-        <a href="/admin/add" class="btn btn-success" data-toggle="modal" >
+        <a href="/admin/addUser" class="btn btn-success" data-toggle="modal" >
             <i class="fa fa-plus">Ajouter un Utilisateur</i>
           </a>
     </div>
@@ -32,6 +32,7 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
+                <th scope="col">Photo</th>
                 <th scope="col">Email</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Username</th>
@@ -44,6 +45,8 @@
         <tbody>
             <tr *ngFor="let item of users">
                 <th scope="row"> {{item.uid}}</th>
+                <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+                  src="{{urlPict+item.profileImageURL}}" alt=""></td>
                 <td scope="row">{{item.email}}</td>
                 <td scope="row">{{item.genre}}</td>
                 <td scope="row">{{item.username}}</td>
@@ -52,16 +55,14 @@
                 <td scope="row">{{item.age|date }}</td>
 
                 <td>
-                    <a routerLink="/admin/edit/{{item.uid}}"
-                        class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i
-                            class="fas fa-edit"></i>
-                    </a>
-
-
-                    <a routerLink="/admin/{{item.uid}}"
-                        class="btn btn-danger waves-effect waves-light btn right #e65100 green"><i
-                            class="fas fa-trash"></i>
-                    </a>
+                  <div class="btn-group">
+                    <!-- <button class="btn btn-outline-info" (click)="onEditUser(appUser)">
+                      <i class="fas fa-edit"></i>
+                    </button> -->
+                    <button class="btn btn-outline-danger" (click)="onDeleteUser(item.uid)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
                 </td>
             </tr>
         </tbody>

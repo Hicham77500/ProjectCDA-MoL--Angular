@@ -1,12 +1,12 @@
-<app-dashboard></app-dashboard>
+
 <div class="container">
   <h2 class="text-center">Créer un nouvel Utilisateur</h2>
-  <a href="/admin" class="btn btn-primary">Retour</a>
+  <a href="/admin/listUser" class="btn btn-primary">Retour</a>
   <div class="border">
     <form #addUserForm="ngForm" (ngSubmit)="onAddUser(addUserForm.value)">
       <!-- <label for="floatingInput">Genre</label> -->
+      <label for="pet-select">Vous êtes : </label>
       <div class="form-floating mb-3">
-        <label for="pet-select">Vous êtes : </label>
         <select ngModel name="genre" id="pet-select">
           <option value="">--Choisisez votre genre--</option>
           <option value="homme">Monsieur</option>
@@ -14,8 +14,8 @@
 
         </select>
       </div>
+      <label for="pet-select">Vos permission : </label>
       <div class="form-floating mb-3">
-        <label for="pet-select">Vos permission : </label>
         <select ngModel name="role" id="pet-select">
           <option value="">--Choisisez vos droits--</option>
           <option value="ROLE_SUPER_ADMIN">Admin</option>
@@ -23,7 +23,7 @@
 
         </select>
       </div>
-
+      
       <label for="floatingInput">Nom</label>
       <div class="form-floating mb-3">
         <input ngModel name="lastname" type="text" class="form-control" id="floatingInput" placeholder="nom" required />

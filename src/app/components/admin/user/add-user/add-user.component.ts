@@ -34,7 +34,7 @@ export class AddUserComponent implements OnInit {
     }
     this.userService.addUser(user).subscribe(
       (data: any) => {this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été créé avec succès")
-     this.router.navigateByUrl('/admin');}
+     this.router.navigateByUrl('/admin/listUser');}
       ,
 
       (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['message'])

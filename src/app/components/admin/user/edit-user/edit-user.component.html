@@ -1,6 +1,6 @@
 <div class="container">
   <h2 class="text-center">Modifier l'utilisateur : {{editUser.username}}</h2>
-  <a href="/admin" class="btn btn-primary">Retour</a>
+  <a href="/admin/listUser" class="btn btn-primary">Retour</a>
   <div class="border">
     <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
       <select name="genre" [(ngModel)]="editUser.genre">
