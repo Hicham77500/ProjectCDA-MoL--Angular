@@ -11,12 +11,14 @@ import { PostService } from 'src/app/services/post/post.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { AppSettings } from 'src/app/settings/app.settings';
 
+declare var window:any;
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+
   declare public refreshing: boolean;
   declare posts: any;
   urlPict = AppSettings.IMG_PROFIL;
@@ -29,6 +31,7 @@ export class ProfilComponent implements OnInit {
   formModal:any;
   ngOnInit(): void {
     this.getPosts();
+    
   }
   constructor(
     private postService: PostService,
@@ -41,13 +44,20 @@ export class ProfilComponent implements OnInit {
   ) {
     this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn') as any);
   }
-  openModal(post : Post){
+  openModalProfil() {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("myModalProfil")
+    );
+    this.formModal.show();
+    }
+  openModalPhoto(post : Post){
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("myModalPhoto")
+    );
     this.selectedPost = post;
     this.formModal.show();
   }
-  doSomething(){
-    this.formModal.hide();
-  }
+
   onEdit(user: User) {
     this.userService.editUser(this.userLoggedIn.uid, user).subscribe(
       (data: any) => {
