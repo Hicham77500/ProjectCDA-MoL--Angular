@@ -44,6 +44,7 @@ import { ProfilComponent } from './components/profil/profil.component';
     ListPostComponent,
     ProfilComponent,
 
+
   ],
   imports: [
   

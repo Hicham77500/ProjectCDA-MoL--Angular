@@ -94,8 +94,53 @@
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="row">
-                                            <div class="col-md-8">
-                                                dazdzadazdazdazd
+                                            <div class="container">
+                                               
+                                                    <h2 class="text-center">Modifier l'utilisateur : {{userLoggedIn.username}}</h2>
+                                                    <a href="/profil" class="btn btn-primary">Retour</a>
+                                                    <div class="border">
+                                                      <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+                                                        <div class="form-floating mb-3">
+                                                          <select name="genre" [(ngModel)]="userLoggedIn.genre">
+                                                            <option value="">{{userLoggedIn.genre}}</option>
+                                                            <option value="homme">Monsieur</option>
+                                                            <option value="femme">Madame</option>
+                                                          </select>
+                                                        </div>
+                                                        <div class="form-floating mb-3">
+                                                          <select name="role" [(ngModel)]="userLoggedIn.role">
+                                                            <option value="">{{userLoggedIn.role}}</option>
+                                                            <option value="ROLE_SUPER_ADMIN">Admin</option>
+                                                            <option value="ROLE_USER">User</option>
+                                                          </select>
+                                                        </div>
+                                                        
+                                                        <label for="floatingInput">Pseudo</label>
+                                                        <div class="form-floating mb-3">
+                                                          <input [(ngModel)]="userLoggedIn.username" name="username" type="text" class="form-control" />
+                                                        </div>
+                                                        <label for="floatingInput">Email address</label>
+                                                        <div class="form-floating mb-3">
+                                                          <input [(ngModel)]="userLoggedIn.email" name="email" type="email" class="form-control" />
+                                                        </div>
+                                                  
+                                                        <label for="floatingInput">Nom</label>
+                                                        <div class="form-floating mb-3">
+                                                          <input [(ngModel)]="userLoggedIn.lastname" name="lastname" type="text" class="form-control" />
+                                                        </div>
+                                                        <label for="floatingInput">prenom</label>
+                                                        <div class="form-floating mb-3">
+                                                          <input [(ngModel)]="userLoggedIn.firstname" name="firstname" type="text" class="form-control" />
+                                                        </div>
+                                                        <label for="floatingInput">Date de naissance</label>
+                                                        <div class="form-floating mb-3">
+                                                          <input [(ngModel)]="userLoggedIn.age" name="age" type="date" class="form-control" id="floatingInput"
+                                                            placeholder="prenom" required />
+                                                        </div>
+                                                        <button type="submit">Envoyer</button>
+                                                      </form>
+                                                    
+                                                  </div>   
                                             </div>
 
 
