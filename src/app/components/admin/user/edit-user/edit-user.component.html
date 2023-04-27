@@ -2,7 +2,7 @@
   <h2 class="text-center">Modifier l'utilisateur : {{editUser.username}}</h2>
   <a href="/admin/listUser" class="btn btn-primary">Retour</a>
   <div class="border">
-    <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+    <form #editUserProfileImageForm="ngForm" (ngSubmit)="onEdit(editUserProfileImageForm.value)">
     <div class="input-group-mb-2">
       <div class="input-group-prepend">
         <span class="input-group-text"><img src="{{urlPict+editUser.profileImageURL}}" alt="" srcset=""></span>
@@ -29,7 +29,7 @@
         <select name="role" [(ngModel)]="editUser.role">
           <option value="">{{editUser.role}}</option>
           <option value="ROLE_SUPER_ADMIN">Admin</option>
-          <option value="ROLE_USER">User</option>
+          <option value="ROLE_USER">Utilisateur</option>
         </select>
       </div>
       
@@ -37,19 +37,16 @@
       <div class="form-floating mb-3">
         <input [(ngModel)]="editUser.username" name="username" type="text" class="form-control" />
       </div>
-      <label for="floatingInput">Email address</label>
+      <label for="floatingInput">Email</label>
       <div class="form-floating mb-3">
         <input [(ngModel)]="editUser.email" name="email" type="email" class="form-control" />
       </div>
 
-      <label for="floatingInput">Nom</label>
+      <label for="floatingInput">Nom complet</label>
       <div class="form-floating mb-3">
-        <input [(ngModel)]="editUser.lastname" name="lastname" type="text" class="form-control" />
+        <input [(ngModel)]="editUser.completeName" name="completeName" type="text" class="form-control" />
       </div>
-      <label for="floatingInput">prenom</label>
-      <div class="form-floating mb-3">
-        <input [(ngModel)]="editUser.firstname" name="firstname" type="text" class="form-control" />
-      </div>
+     
       <label for="floatingInput">Date de naissance</label>
       <div class="form-floating mb-3">
         <input [(ngModel)]="editUser.age" name="age" type="date" class="form-control" id="floatingInput"
@@ -59,3 +56,4 @@
     </form>
   </div>
 </div>
+{{editUserForm.value|json}}

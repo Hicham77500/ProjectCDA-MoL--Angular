@@ -16,23 +16,31 @@
             
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example2">Nom</label>
-                    <input ngModel name="lastname" type="text" id="form3Example1" class="form-control"  placeholder="nom" required/>
+                <div class="form-outline mb-4">
+                  <label for="pet-select">Vous êtes : </label>
+                  <div class="form-floating mb-3">
+                    <select ngModel name="genre" id="pet-select">
+                      <option value="">--Choisisez votre genre--</option>
+                      <option value="homme">Monsieur</option>
+                      <option value="femme">Madame</option>
+            
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <label class="form-label" for="form3Example1">Prénom</label>
-                    <input ngModel name="firstname" type="text" id="form3Example2" class="form-control" placeholder="prénom" required/>
+                    <label class="form-label" for="form3Example2">Nom Complet</label>
+                    <input ngModel name="completeName" type="text" id="form3Example1" class="form-control"  placeholder="nom" required/>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example1">Identifiant</label>
+                    <input ngModel name="username" type="text" id="form3Example2" class="form-control" placeholder="identifiant" required/>
                   </div>
                 </div>
               </div>
-              <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Identifiant</label>
-                <input ngModel name="username" type="text" id="form3Example3" class="form-control" placeholder="identifiant" required />
-              </div>
+              
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">Email</label>

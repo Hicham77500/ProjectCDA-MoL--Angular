@@ -32,7 +32,7 @@ export class ListUserComponent implements OnInit {
   ngOnInit(): void {
 
     this.getUsers();
-
+    
 
   }
   public getUsers() {
@@ -42,6 +42,7 @@ export class ListUserComponent implements OnInit {
         (data: any) => {
           this.userService.addUsersToLocalCache(data);
           this.users = data;
+          console.log(data)
           this.refreshing = false;
           this.notificationService.notify(NotificationType.SUCCESS, `${data.length} Utilisateur(s) chargé(s) avec succès`)
         },
@@ -74,8 +75,7 @@ export class ListUserComponent implements OnInit {
   public searchUsers(searchTerm: string): void {
     const results: User[] = [];
     for (const user of this.userService.getUsersFromLocalCache()) {
-      if (user.firstname.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
-        user.lastname.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+      if (user.completeName.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
         user.username.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
         user.uid.toString().toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
       ) {

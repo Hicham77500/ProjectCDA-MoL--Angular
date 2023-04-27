@@ -24,26 +24,22 @@
         </select>
       </div>
       
-      <label for="floatingInput">Nom</label>
+      <label for="floatingInput">Nom complet</label>
       <div class="form-floating mb-3">
-        <input ngModel name="lastname" type="text" class="form-control" id="floatingInput" placeholder="nom" required />
+        <input ngModel name="completeName" type="text" class="form-control" id="floatingInput" placeholder="nom" required />
       </div>
-      <label for="floatingInput">Prénom</label>
+      <label for="floatingInput">Identifiant</label>
       <div class="form-floating mb-3">
-        <input ngModel name="firstname" type="text" class="form-control" id="floatingInput" placeholder="prenom"
+        <input ngModel name="username" type="text" class="form-control" id="floatingInput" placeholder="pseudo"
           required />
       </div>
+     
       <label for="floatingInput">Date de naissance</label>
       <div class="form-floating mb-3">
         <input ngModel name="age" type="date" class="form-control" id="floatingInput" placeholder="prenom" required />
       </div>
 
 
-      <label for="floatingInput">Pseudo</label>
-      <div class="form-floating mb-3">
-        <input ngModel name="username" type="text" class="form-control" id="floatingInput" placeholder="pseudo"
-          required />
-      </div>
       <label for="floatingInput">Email</label>
       <div class="form-floating mb-3">
         <input ngModel name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
@@ -78,3 +74,4 @@
     </form>
   </div>
 </div>
+{{addUserForm.value|json}}

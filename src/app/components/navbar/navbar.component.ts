@@ -10,9 +10,10 @@ import { TokenService } from 'src/app/services/token/token.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent{
   declare userLoggedIn: any;
   declare userAdmin: any;
+  
   constructor(
     private authenticationService: AuthenticationService
   ) {

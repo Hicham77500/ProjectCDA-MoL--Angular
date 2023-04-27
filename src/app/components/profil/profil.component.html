@@ -10,7 +10,7 @@
 
                                 <div class="input-group-mb-2">
                                     <div class="input-group-prepend">
-                                        <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+                   
                                             <label for="test">
                                                 <img src="{{urlPict+userLoggedIn.profileImageURL}}" id="imgProfile"
                                                     width="200" height=" 200" class="img-thumbnail" />
@@ -19,7 +19,7 @@
                                             <input type="file" name="profileImage" id="test" hidden="true"
                                                 (change)="onProfileImageChange($event,userLoggedIn.username)"
                                                 class="custom-file-input">
-                                        </form>
+                                    
                                     </div>
 
                                 </div>
@@ -99,7 +99,7 @@
                                                     <h2 class="text-center">Modifier l'utilisateur : {{userLoggedIn.username}}</h2>
                                                     <a href="/profil" class="btn btn-primary">Retour</a>
                                                     <div class="border">
-                                                      <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+                                                      <form #editUserForm="ngForm" (ngSubmit)="onEdit(userLoggedIn.uid,editUserForm.value)">
                                                         <div class="form-floating mb-3">
                                                           <select name="genre" [(ngModel)]="userLoggedIn.genre">
                                                             <option value="">{{userLoggedIn.genre}}</option>
@@ -124,22 +124,19 @@
                                                           <input [(ngModel)]="userLoggedIn.email" name="email" type="email" class="form-control" />
                                                         </div>
                                                   
-                                                        <label for="floatingInput">Nom</label>
+                                                        <label for="floatingInput">Nom Complet</label>
                                                         <div class="form-floating mb-3">
-                                                          <input [(ngModel)]="userLoggedIn.lastname" name="lastname" type="text" class="form-control" />
+                                                          <input [(ngModel)]="userLoggedIn.completeName" name="completeName" type="text" class="form-control" />
                                                         </div>
-                                                        <label for="floatingInput">prenom</label>
-                                                        <div class="form-floating mb-3">
-                                                          <input [(ngModel)]="userLoggedIn.firstname" name="firstname" type="text" class="form-control" />
-                                                        </div>
+                                                        
                                                         <label for="floatingInput">Date de naissance</label>
                                                         <div class="form-floating mb-3">
-                                                          <input [(ngModel)]="userLoggedIn.age" name="age" type="date" class="form-control" id="floatingInput"
+                                                            <input [(ngModel)]="userLoggedIn.age" name="age" type="date" class="form-control" id="floatingInput"
                                                             placeholder="prenom" required />
                                                         </div>
                                                         <button type="submit">Envoyer</button>
-                                                      </form>
-                                                    
+                                                    </form>
+                                                    {{editUserForm.value|json}}
                                                   </div>   
                                             </div>
 

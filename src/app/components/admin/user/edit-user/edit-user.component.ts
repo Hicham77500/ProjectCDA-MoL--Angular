@@ -41,11 +41,11 @@ export class EditUserComponent implements OnInit {
     )
   }
   onEdit(user: User) {
-
-    this.userService.editUser(user.uid, user).subscribe(
+    console.log(user)
+    this.userService.editUser(this.editUser.uid, user).subscribe(
       (data: any) => {
         this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
-        this.router.navigateByUrl('/admin');
+        this.router.navigateByUrl('/admin/listUser');
       }
       ,
 

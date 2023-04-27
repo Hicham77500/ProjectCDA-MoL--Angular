@@ -30,6 +30,15 @@ export class ProfilComponent implements OnInit {
   declare selectedPost:any;
   formModal:any;
   ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.userService.getUser(id).pipe().subscribe({
+      next: (data: User) => {
+        this.editUser = data;
+      },
+      complete: () => console.log('ok')
+
+    }
+    )
     this.getPosts();
     
   }
@@ -58,15 +67,18 @@ export class ProfilComponent implements OnInit {
     this.formModal.show();
   }
 
-  onEdit(user: User) {
-    this.userService.editUser(this.userLoggedIn.uid, user).subscribe(
+  onEdit(id : number,user: User) {
+    console.log(user)
+    this.subscription.push(
+    this.userService.editUser(id, user).subscribe(
       (data: any) => {
-        this.userLoggedIn = data;
         this.authenticationService.SaveUserLoggedIn(data)
+        this.userLoggedIn = data;
         this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
-        this.router.navigateByUrl('/admin');
+       
       },
       (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
+    )
     )
   }
   public getPosts() {
@@ -98,8 +110,8 @@ export class ProfilComponent implements OnInit {
         (data: any) => {
           console.log(data)
           
-          this.userLoggedIn = data;
           this.authenticationService.SaveUserLoggedIn(data)
+          this.userLoggedIn = data;
           
         }
       )
