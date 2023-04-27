@@ -1,3 +1,5 @@
+import { Post } from "./post";
+
 export class User {
     public uid: number;
     public email: string;
@@ -11,6 +13,7 @@ export class User {
     public roles: string[];
     public role: string;
     public profileImageURL: string;
+    public listPost: Post[];
     constructor(
         ) {
         this.uid = 0;
@@ -25,5 +28,6 @@ export class User {
         this.roles = [];
         this.role = '';  
         this.age = new Date();  
+        this.listPost = [];
     }
 }

@@ -14,6 +14,7 @@ export class AuthenticationService {
   SaveUserLoggedIn(body: User | null) {
     localStorage.setItem('userLoggedIn', JSON.stringify(body));
   }
+
  
   private router = inject(Router);
   private jwtHelper = new JwtHelperService();
