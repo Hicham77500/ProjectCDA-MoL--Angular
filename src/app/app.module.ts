@@ -21,6 +21,7 @@ import { ListPostComponent } from './components/admin/posts/list-post/list-post.
 import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
 import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 
@@ -41,6 +42,7 @@ import { RegisterComponent } from './components/register/register.component';
     AddPostComponent,
     EditPostComponent,
     ListPostComponent,
+    ProfilComponent,
 
   ],
   imports: [

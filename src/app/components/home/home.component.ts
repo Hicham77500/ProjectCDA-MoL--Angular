@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit{
     );
     this.getPosts();
     this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn') as any);
-    console.log(this.userLoggedIn)
   }
   constructor(
     private postService: PostService,
@@ -58,11 +57,8 @@ export class HomeComponent implements OnInit{
         (err: HttpErrorResponse) => {
           this.refreshing = false;
           this.notificationService.notify(NotificationType.ERROR, err.error['messsage'])
-
         }
-
       )
-
-    );
+    )
   }
 }

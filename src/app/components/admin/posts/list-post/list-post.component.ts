@@ -45,7 +45,6 @@ export class ListPostComponent implements OnInit {
         (data: any) => {
           this.postService.addPostsToLocalCache(data);
           this.posts = data;
-          console.log(this.posts)
           this.refreshing = false;
           this.notificationService.notify(NotificationType.SUCCESS, `${data.length} Post(s) chargé(s) avec succès`)
         },
@@ -74,16 +73,12 @@ export class ListPostComponent implements OnInit {
     )
   } 
   public searchPosts(searchTerm: string): void {
-    // console.log(searchTerm);
-
     const results: Post[] = [];
     for (const post of this.postService.getPostsFromLocalCache()) {
       if (
         post.idPost.toString().toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
         post.idUser.toString().toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
-
       ) {
-
         results.push(post);
       }
     }
@@ -91,6 +86,5 @@ export class ListPostComponent implements OnInit {
     if (results.length === 0 || !searchTerm) {
       this.posts = this.postService.getPostsFromLocalCache()
     }
-
   }
 }

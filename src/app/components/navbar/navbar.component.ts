@@ -12,15 +12,11 @@ import { TokenService } from 'src/app/services/token/token.service';
 })
 export class NavbarComponent {
   declare userLoggedIn: any;
-  declare userAdmin:any;
+  declare userAdmin: any;
   constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router,
-    private notificationService: NotificationService,
-    private tokenService: TokenService
+    private authenticationService: AuthenticationService
   ) {
     this.userLoggedIn = localStorage.getItem('userLoggedIn');
     this.userAdmin = this.authenticationService.isLoggedInAsAdmin();
-    console.log(this.userLoggedIn);
   }
 }

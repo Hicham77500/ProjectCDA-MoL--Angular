@@ -24,25 +24,19 @@ export class LoginComponent implements OnInit {
     private notificationService: NotificationService,
     private tokenService: TokenService
   ) {
-
   }
   ngOnInit(): void {
     this.authenticationService.logOut()
-
   }
 
   public onLogin(user: User) {
-
-
     this.authenticationService.login(user).subscribe({
       next: (response: HttpResponse<User>) => {
-        console.log(response)
-        console.log(response.headers.get(HeaderType.JWT_TOKEN));
         if (response.headers.get(HeaderType.JWT_TOKEN)) {
           let token: any;
           token = response.headers.get(HeaderType.JWT_TOKEN);
           this.tokenService.saveToken(token);
-          this.authenticationService.validateToken(); 
+          this.authenticationService.validateToken();
           this.tokenService.setRoles(response.body!.role);
           this.authenticationService.SaveUserLoggedIn(response.body);
         }
@@ -53,17 +47,13 @@ export class LoginComponent implements OnInit {
       },
 
       complete: () => {
-        if(this.authenticationService.isLoggedInAsAdmin()){
+        if (this.authenticationService.isLoggedInAsAdmin()) {
           this.router.navigateByUrl("/admin")
-        }else if(this.authenticationService.isLoggedInAsUser()){
+        } else if (this.authenticationService.isLoggedInAsUser()) {
           this.router.navigateByUrl("")
         }
-
-
       }
-
     })
-
   }
 
 }

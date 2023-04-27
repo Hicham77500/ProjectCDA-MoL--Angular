@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="card-title mb-4">
+                        <div class="d-flex justify-content-start">
+                            <div class="image-container">
+                                <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+                                    <div class="input-group-mb-2">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> <img
+                                                    src="{{urlPict+userLoggedIn.profileImageURL}}" id="imgProfile"
+                                                    width="200" height=" 200" class="img-thumbnail" />
+                                            </span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="profileImage"
+                                                (change)="onProfileImageChange($event,userLoggedIn.username)"
+                                                class="custom-file-input">
+                                            <label class="custom-file-label">
+                                                <span [hidden]="!fileName">{{fileName}}</span>
+                                                <span [hidden]="fileName">{{userLoggedIn.profileImageURL}}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="userData ml-3">
+                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold; margin-left:10px">
+
+                                </h2>
+
+                                <h6 class="d-block">
+                                    <a class="nom" href=""></a>
+                                    Article(s) posté(s)
+                                </h6>
+                            </div>
+                            <div class="ml-auto">
+                                <input type="button" class="btn btn-primary d-none" id="btnDiscard"
+                                    value="Discard Changes" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="basicInfo-tab" data-toggle="tab" href="#basicInfo"
+                                        role="tab" aria-controls="basicInfo" aria-selected="true">Vos Photos</a>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

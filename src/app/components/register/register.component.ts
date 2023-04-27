@@ -19,20 +19,16 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private notificationService: NotificationService
   ) {
-
   }
   ngOnInit(): void {
 
   }
-
-
   public onRegister(user: User) {
-    console.log(user);
     this.authenticationService.register(user).subscribe(
-      () => {this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été crée avec succès")
+      () => {
+        this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été crée avec succès")
         this.router.navigateByUrl('/login')
       },
-
       (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['message'])
     )
 

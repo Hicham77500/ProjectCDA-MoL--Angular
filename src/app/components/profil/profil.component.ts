@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/models/user';
@@ -10,16 +10,19 @@ import { UserService } from 'src/app/services/user/user.service';
 import { AppSettings } from 'src/app/settings/app.settings';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class ProfilComponent implements OnInit {
   urlPict = AppSettings.IMG_PROFIL;
   public editUser = new User();
   declare public fileName: string;
   declare public pictureFile: File;
   private subscription: Subscription[] = [];
+  declare userLoggedIn: User;
+  ngOnInit(): void {
+  }
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
@@ -27,32 +30,16 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute,
     private notificationService: NotificationService
   ) {
-
-  }
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(id).pipe().subscribe({
-      next: (data: User) => {
-        this.editUser = data;
-      },
-      complete: () => console.log('ok')
-
-    }
-    )
+    this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn') as any);
   }
   onEdit(user: User) {
-
-    this.userService.editUser(user.uid, user).subscribe(
+    this.userService.editUser(this.userLoggedIn.uid, user).subscribe(
       (data: any) => {
         this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
         this.router.navigateByUrl('/admin');
-      }
-      ,
-
+      },
       (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
     )
-
-
   }
   public onProfileImageChange(event: any, username: string): void {
     const files: File[] = event.target.files;
@@ -63,11 +50,12 @@ export class EditUserComponent implements OnInit {
     formData.append('username', username);
     formData.append('profileImage', this.pictureFile);
     this.subscription.push(
-    this.userService.updateProfileImage(formData).subscribe(
-      (data: any) => {
-        this.editUser = data;
-      }
-    )
+      this.userService.updateProfileImage(formData).subscribe(
+        (data: any) => {
+          this.userLoggedIn = data;
+        }
+      )
     )
   }
+
 }

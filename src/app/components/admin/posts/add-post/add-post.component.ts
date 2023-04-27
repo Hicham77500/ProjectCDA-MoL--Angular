@@ -31,14 +31,9 @@ export class AddPostComponent {
   ngOnInit(): void {
     const userJson : any= localStorage.getItem('userLoggedIn')
     this.user = JSON.parse(userJson);
-    console.log(this.user);
   }
   public onAddPost(post: Post) {
-    
-    
-    console.log(post,this.pictureFile)
-    
-    
+
     this.postService.addPost(post).subscribe(
       (data: any) => {this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été créé avec succès")
       const formData = new FormData();
