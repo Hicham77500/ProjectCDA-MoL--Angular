@@ -6,9 +6,10 @@ import { HeaderType } from 'src/app/enum/header-type.enum';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { IToken } from 'src/app/interfaces/IToken';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { AuthenticationService } from 'src/app/services/admin/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { TokenService } from 'src/app/services/token/token.service';
+import { TokenService } from 'src/app/services/admin/token/token.service';
+
 
 
 

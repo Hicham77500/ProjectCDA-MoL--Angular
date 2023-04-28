@@ -3,25 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/admin/login/login.component';
 import { FormsModule } from '@angular/forms';
-
-import { NotificationModule } from './services/notification/notification.module';
-
-import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
-
-import { TokenInterceptor } from './interceptors/token.interceptor';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { HomeComponent } from './components/home/home.component';
-import { ListUserComponent } from './components/admin/user/list-user/list-user.component';
-
+import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
 import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.component';
 import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
+import { RegisterComponent } from './components/admin/register/register.component';
 import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
-import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ProfilComponent } from './components/profil/profil.component';
+import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
+import { ListUserComponent } from './components/admin/user/list-user/list-user.component';
+import { HomeComponent } from './components/customer/home/home.component';
+import { NavbarComponent } from './components/customer/navbar/navbar.component';
+import { ProfilComponent } from './components/customer/profil/profil.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { NotificationModule } from './services/notification/notification.module';
 
 
 

@@ -6,8 +6,9 @@ import { Picture } from 'src/app/models/picture';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { PictureService } from 'src/app/services/picture/picture.service';
-import { PostService } from 'src/app/services/post/post.service';
+import { PictureService } from 'src/app/services/admin/picture/picture.service';
+import { PostService } from 'src/app/services/admin/post/post.service';
+
 
 @Component({
   selector: 'app-add-post',

@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { AuthenticationService } from 'src/app/services/admin/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/services/admin/user/user.service';
+
 import { AppSettings } from 'src/app/settings/app.settings';
 
 @Component({

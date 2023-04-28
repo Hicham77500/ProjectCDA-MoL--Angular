@@ -5,10 +5,11 @@ import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { AuthenticationService } from 'src/app/services/admin/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { PostService } from 'src/app/services/post/post.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { PostService } from 'src/app/services/admin/post/post.service';
+import { UserService } from 'src/app/services/admin/user/user.service';
+
 import { AppSettings } from 'src/app/settings/app.settings';
 
 declare var window:any;
@@ -19,6 +20,7 @@ declare var window:any;
 })
 export class ProfilComponent implements OnInit {
 
+  declare id : number;
   declare public refreshing: boolean;
   declare posts: any;
   urlPict = AppSettings.IMG_PROFIL;
@@ -30,17 +32,8 @@ export class ProfilComponent implements OnInit {
   declare selectedPost:any;
   formModal:any;
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(id).pipe().subscribe({
-      next: (data: User) => {
-        this.editUser = data;
-      },
-      complete: () => console.log('ok')
-
-    }
-    )
     this.getPosts();
-    
+    this.id = this.userLoggedIn.uid;
   }
   constructor(
     private postService: PostService,
@@ -59,6 +52,13 @@ export class ProfilComponent implements OnInit {
     );
     this.formModal.show();
     }
+    openModalBiography() {
+      this.formModal = new window.bootstrap.Modal(
+        document.getElementById("myModalBiography")
+      );
+      
+      this.formModal.show();
+      }
   openModalPhoto(post : Post){
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("myModalPhoto")
@@ -66,11 +66,11 @@ export class ProfilComponent implements OnInit {
     this.selectedPost = post;
     this.formModal.show();
   }
-
-  onEdit(id : number,user: User) {
-    console.log(user)
+  onEdit(user: User) {
+    console.log(this.id,user)
+    
     this.subscription.push(
-    this.userService.editUser(id, user).subscribe(
+    this.userService.editUser(this.id, user).subscribe(
       (data: any) => {
         this.authenticationService.SaveUserLoggedIn(data)
         this.userLoggedIn = data;

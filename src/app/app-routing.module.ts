@@ -3,18 +3,19 @@ import { CanActivateFn, RouterModule, Routes } from '@angular/router';
 import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
 
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/admin/login/login.component';
 
-import { AuthenticationService } from './services/authentication/authentication.service';
+import { AuthenticationService } from './services/admin/authentication/authentication.service';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
+
+import { HomeComponent } from './components/customer/home/home.component';
 import { ListUserComponent } from './components/admin/user/list-user/list-user.component';
 import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
 import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.component';
 import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ProfilComponent } from './components/profil/profil.component';
+import { RegisterComponent } from './components/admin/register/register.component';
+import { NavbarComponent } from './components/customer/navbar/navbar.component';
+import { ProfilComponent } from './components/customer/profil/profil.component';
 
 
 const authGuardFn: CanActivateFn = () => {

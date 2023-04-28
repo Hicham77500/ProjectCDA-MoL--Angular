@@ -3,9 +3,10 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AppSettings } from 'src/app/settings/app.settings';
-import { TokenService } from '../token/token.service';
+
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { TokenService } from '../token/token.service';
 
 @Injectable({
   providedIn: 'root'

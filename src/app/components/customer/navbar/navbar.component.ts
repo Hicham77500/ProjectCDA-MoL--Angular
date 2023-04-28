@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
-import { TokenService } from 'src/app/services/token/token.service';
+import { AuthenticationService } from 'src/app/services/admin/authentication/authentication.service';
+
 
 @Component({
   selector: 'app-navbar',

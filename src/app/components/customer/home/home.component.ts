@@ -6,7 +6,8 @@ import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { PostService } from 'src/app/services/post/post.service';
+import { PostService } from 'src/app/services/admin/post/post.service';
+
 import { AppSettings } from 'src/app/settings/app.settings';
 
 declare var window:any;
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit{
   declare public refreshing: boolean;
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
+ 
   ngOnInit(): void {
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("myModal")
