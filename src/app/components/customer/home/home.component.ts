@@ -11,63 +11,87 @@ import { PostService } from 'src/app/services/admin/post/post.service';
 import { AppSettings } from 'src/app/settings/app.settings';
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
+import { CommentCustomerService } from 'src/app/services/customer/comment-customer/comment-customer.service';
 
-declare var window:any;
+declare var window: any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
-  formModal:any;
-  declare id : number;
+export class HomeComponent implements OnInit {
+
+  formModal: any;
+  declare id: number;
   declare userLoggedIn: User;
   declare posts: any;
   declare commentsForSelectedPost: any;
-  declare selectedPost:any;
+  declare selectedPost: any;
   declare public refreshing: boolean;
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
- 
-  ngOnInit(): void {
-    this.formModal = new window.bootstrap.Modal(
-      document.getElementById("myModal")
-    );
 
+  ngOnInit(): void {
     this.getPosts();
     this.GetUserConnected();
   }
   constructor(
-    private userCustomerService : UserCustomerService,
+    private userCustomerService: UserCustomerService,
     private postCustomerService: PostCustomerService,
+    private commentCustomerService: CommentCustomerService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
   ) {
   }
-  public GetUserConnected(){
+  public GetUserConnected() {
 
-    this.id =localStorage.getItem('userLoggedIn') as any;
+    this.id = localStorage.getItem('userLoggedIn') as any;
     console.log(this.id)
     this.subscription.push(
-      
+
       this.userCustomerService.getUser(this.id).subscribe(
-        (data : any) => {
+        (data: any) => {
           this.userLoggedIn = data;
         }
       )
     )
-  }  
+  }
+  openAndCloseComment() {
+    const comment = document.getElementById('comment');
+    console.log(comment?.classList)
+    if (comment?.classList.contains("d-none") ) {
   
-  openModal(post : Post){
+      comment?.classList.remove('d-none');
+    
+    
+    }else{
+      comment?.classList.add('d-none');
+    }
+  
+  }
+  closeComment() {
+    const comment = document.getElementById('commentProfil');
+    console.log(comment?.classList)
+    if (!comment?.classList.contains("d-none")) {
+      comment?.classList.add('d-none');
+  
+   
+  
+  
+    } 
+  
+  }
+  openModal(post: Post) {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("myModalPhoto")
+    );
     this.selectedPost = post;
     this.commentsForSelectedPost = post.listComments;
     this.formModal.show();
   }
-  // doSomething(){
-  //   this.formModal.hide();
-  // }
+
   public getPosts() {
 
     this.subscription.push(
@@ -80,6 +104,21 @@ export class HomeComponent implements OnInit{
           this.notificationService.notify(NotificationType.ERROR, err.error['messsage'])
         }
       )
+    )
+  }
+  onComment(comment: any) {
+    console.log(comment)
+    this.subscription.push(
+      this.commentCustomerService.addComment(comment).subscribe(
+        (data: any) => {
+          this.GetUserConnected();
+          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+
+        },
+        (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
+      )
+
+
     )
   }
 }

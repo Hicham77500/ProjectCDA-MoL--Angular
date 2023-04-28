@@ -5,10 +5,8 @@ import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/admin/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { PostService } from 'src/app/services/admin/post/post.service';
-import { UserService } from 'src/app/services/admin/user/user.service';
+
 
 import { AppSettings } from 'src/app/settings/app.settings';
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
@@ -40,13 +38,35 @@ export class ProfilComponent implements OnInit {
   }
   constructor(
     private userCustomerService: UserCustomerService,
-    private postCustomerService: PostCustomerService,
     private commentCustomerService: CommentCustomerService,
-    private router: Router,
-    private route: ActivatedRoute,
     private notificationService: NotificationService
 
   ) {
+
+  }
+  openAndCloseComment() {
+    const comment = document.getElementById('commentProfil');
+    console.log(comment?.classList)
+    if (comment?.classList.contains("d-none")) {
+
+      comment?.classList.remove('d-none');
+
+
+    } else {
+      comment?.classList.add('d-none');
+    }
+
+  }
+  closeComment() {
+    const comment = document.getElementById('commentProfil');
+    console.log(comment?.classList)
+    if (!comment?.classList.contains("d-none")) {
+      comment?.classList.add('d-none');
+
+   
+
+
+    } 
 
   }
   openModalProfil() {
@@ -131,5 +151,5 @@ export class ProfilComponent implements OnInit {
       )
     )
   }
-  
+
 }
