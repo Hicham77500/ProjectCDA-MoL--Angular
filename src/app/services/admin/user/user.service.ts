@@ -16,26 +16,26 @@ export class UserService {
 
   }
   public getUsers() {
-    return this.http.get(AppSettings.APP_URL + "/listUser");
+    return this.http.get(AppSettings.APP_URL + "/admin/listUser");
 
   }
   public getUser(id: number) {
-    return this.http.get<User>(AppSettings.APP_URL + "/getUser/" + id);
+    return this.http.get<User>(AppSettings.APP_URL + "/admin/getUser/" + id);
   }
   public addUser(user: User) {
     console.log(user)
-    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/addUser', user)
+    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/admin/addUser', user)
   }
   public editUser(id: number, user: User) {
     console.log(id,user)
-    return this.http.put<User | HttpErrorResponse>(AppSettings.APP_URL + "/updateUser/" + id, user);
+    return this.http.put<User | HttpErrorResponse>(AppSettings.APP_URL + "/admin/updateUser/" + id, user);
   }
   public deleteUser(id: number|null) {
-    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/deleteUser/" + id);
+    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/admin/deleteUser/" + id);
   }
   updateProfileImage(formData: FormData) {
     console.log(formData)
-    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/updateProfileImage', formData)
+    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/admin/updateProfileImage', formData)
   }
 
 
