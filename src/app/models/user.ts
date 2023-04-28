@@ -6,12 +6,12 @@ export class User {
     public plainPassword: string;
     public password: string;
     public genre: string;
-    public username: string;
     public completeName: string;
-
+    
     public age: Date;
     public roles: string[];
     public role: string;
+    public username: string;
     public profileImageURL: string;
     public biography:string;
     public listPost: Post[];

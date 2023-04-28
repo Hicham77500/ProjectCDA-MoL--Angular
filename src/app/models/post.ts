@@ -3,6 +3,7 @@ export class Post{
     public idUser: number;
     public description: string;
     public date: Date;
+    
     public listPictures: string[];
     public listComments: string[];
 

@@ -13,8 +13,9 @@ import { UserService } from 'src/app/services/admin/user/user.service';
 import { AppSettings } from 'src/app/settings/app.settings';
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
+import { CommentCustomerService } from 'src/app/services/customer/comment-customer/comment-customer.service';
 
-declare var window:any;
+declare var window: any;
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.component.html',
@@ -24,26 +25,27 @@ export class ProfilComponent implements OnInit {
 
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
-
-  declare id : number;
+  declare commentsForSelectedPost: any;
+  declare id: number;
   declare public refreshing: boolean;
   declare posts: any;
   public editUser = new User();
   declare public fileName: string;
   declare public pictureFile: File;
   declare userLoggedIn: User;
-  declare selectedPost:any;
-  formModal:any;
+  declare selectedPost: any;
+  formModal: any;
   ngOnInit(): void {
     this.GetUserConnected();
   }
   constructor(
-    private userCustomerService : UserCustomerService,
+    private userCustomerService: UserCustomerService,
     private postCustomerService: PostCustomerService,
+    private commentCustomerService: CommentCustomerService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
-    
+
   ) {
 
   }
@@ -52,39 +54,53 @@ export class ProfilComponent implements OnInit {
       document.getElementById("myModalProfil")
     );
     this.formModal.show();
-    }
-    openModalBiography() {
-      this.formModal = new window.bootstrap.Modal(
-        document.getElementById("myModalBiography")
-      );
-      
-      this.formModal.show();
-      }
-  openModalPhoto(post : Post){
+  }
+  openModalBiography() {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("myModalBiography")
+    );
+
+    this.formModal.show();
+  }
+  openModalPhoto(post: Post) {
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("myModalPhoto")
     );
     this.selectedPost = post;
+    this.commentsForSelectedPost = post.listComments;
     this.formModal.show();
   }
 
   onEdit(user: User) {
-    console.log(this.id,user)
-    
+    console.log(this.id, user)
+
     this.subscription.push(
-    this.userCustomerService.editUser(this.id, user).subscribe(
-      (data: any) => {
-        this.GetUserConnected();
-        this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
-       
-      },
-      (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
-    )
+      this.userCustomerService.editUser(this.id, user).subscribe(
+        (data: any) => {
+          this.GetUserConnected();
+          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+
+        },
+        (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
+      )
     )
   }
-  onComment(arg0: any) {
-    throw new Error('Method not implemented.');
-    }
+  onComment(comment: any) {
+    console.log(comment)
+    this.subscription.push(
+      this.commentCustomerService.addComment(comment).subscribe(
+        (data: any) => {
+          this.GetUserConnected();
+          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+
+        },
+        (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
+      )
+
+
+    )
+  }
+
   public onProfileImageChange(event: any, username: string): void {
     console.log(this.pictureFile)
     const files: File[] = event.target.files;
@@ -103,16 +119,17 @@ export class ProfilComponent implements OnInit {
       )
     )
   }
-  public GetUserConnected(){
+  public GetUserConnected() {
 
-    this.id =localStorage.getItem('userLoggedIn') as any;
-    this.subscription.push(    
+    this.id = localStorage.getItem('userLoggedIn') as any;
+    this.subscription.push(
       this.userCustomerService.getUser(this.id).subscribe(
-        (data : User) => {
+        (data: User) => {
           this.userLoggedIn = data;
           this.posts = data.listPost;
         }
       )
     )
-  }  
+  }
+  
 }

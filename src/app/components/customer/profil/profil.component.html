@@ -256,11 +256,22 @@
                                                 </div>
                                             </div>
                                             <hr />
-                                            <p>{{selectedPost?.listComments}}</p>
+                                            <div class="container" *ngFor="let comment of commentsForSelectedPost">
+                                                <p><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+                                                    src="{{urlPict+comment.profileImageURL}}" alt="">
+                                                 {{comment.username}}</p>
+                                                <p>{{comment.dateTime|date}}</p>
+                                                <p>{{comment.comment}}</p>
+                                             
+                                            </div>
+                                            
                                             <div class="input-group">
                                                 <form #CommentForm="ngForm" (ngSubmit)="onComment(CommentForm.value)">
-
-                                                    <textarea class="form-control" name="comment"
+                                                    <input type="hidden" ngModel="{{selectedPost?.idPost}}" name="idPost">
+                                                    <input type="hidden" ngModel="{{selectedPost?.idUser}}" name="idUser">
+                                                    <input type="hidden" ngModel="{{userLoggedIn.profileImageURL}}" name="profileImageURL">
+                                                    <input type="hidden" ngModel="{{userLoggedIn.username}}" name="username">
+                                                    <textarea class="form-control" ngModel name="comment"
                                                         aria-label="With textarea"></textarea>
                                                     <div class="input-group-prepend">
                                                         <button class="btn btn-dark" type="submit">Publier</button>
