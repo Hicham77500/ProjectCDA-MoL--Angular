@@ -19,15 +19,15 @@ declare var window:any;
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+  urlPict = AppSettings.IMG_PROFIL;
+  private subscription: Subscription[] = [];
 
   declare id : number;
   declare public refreshing: boolean;
   declare posts: any;
-  urlPict = AppSettings.IMG_PROFIL;
   public editUser = new User();
   declare public fileName: string;
   declare public pictureFile: File;
-  private subscription: Subscription[] = [];
   declare userLoggedIn: User;
   declare selectedPost:any;
   formModal:any;
@@ -66,13 +66,14 @@ export class ProfilComponent implements OnInit {
     this.selectedPost = post;
     this.formModal.show();
   }
+
   onEdit(user: User) {
     console.log(this.id,user)
     
     this.subscription.push(
     this.userService.editUser(this.id, user).subscribe(
       (data: any) => {
-        this.authenticationService.SaveUserLoggedIn(data)
+        // this.authenticationService.SaveUserLoggedIn(data)
         this.userLoggedIn = data;
         this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
        
@@ -110,7 +111,7 @@ export class ProfilComponent implements OnInit {
         (data: any) => {
           console.log(data)
           
-          this.authenticationService.SaveUserLoggedIn(data)
+          // this.authenticationService.SaveUserLoggedIn(data)
           this.userLoggedIn = data;
           
         }

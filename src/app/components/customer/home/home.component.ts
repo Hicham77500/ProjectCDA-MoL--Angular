@@ -9,6 +9,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { PostService } from 'src/app/services/admin/post/post.service';
 
 import { AppSettings } from 'src/app/settings/app.settings';
+import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
+import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
 
 declare var window:any;
 
@@ -19,6 +21,7 @@ declare var window:any;
 })
 export class HomeComponent implements OnInit{
   formModal:any;
+  declare id : number;
   declare userLoggedIn: User;
   declare posts: any;
   declare selectedPost:any;
@@ -30,29 +33,43 @@ export class HomeComponent implements OnInit{
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("myModal")
     );
+
     this.getPosts();
-    this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn') as any);
+    this.GetUserConnected();
   }
   constructor(
-    private postService: PostService,
-
+    private userCustomerService : UserCustomerService,
+    private postCustomerService: PostCustomerService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
   ) {
-    
   }
+  public GetUserConnected(){
+
+    this.id =localStorage.getItem('userLoggedIn') as any;
+    console.log(this.id)
+    this.subscription.push(
+      
+      this.userCustomerService.getUser(this.id).subscribe(
+        (data : any) => {
+          this.userLoggedIn = data;
+        }
+      )
+    )
+  }  
+  
   openModal(post : Post){
     this.selectedPost = post;
     this.formModal.show();
   }
-  doSomething(){
-    this.formModal.hide();
-  }
+  // doSomething(){
+  //   this.formModal.hide();
+  // }
   public getPosts() {
 
     this.subscription.push(
-      this.postService.getPosts().subscribe(
+      this.postCustomerService.getPosts().subscribe(
         (data: any) => {
           this.posts = data;
         },

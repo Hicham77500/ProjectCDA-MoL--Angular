@@ -67,7 +67,7 @@ export class EditUserComponent implements OnInit {
     this.userService.updateProfileImage(formData).subscribe(
       (data: any) => {
         
-        this.authenticationService.SaveUserLoggedIn(data)
+        // this.authenticationService.SaveUserLoggedIn(data)
       }
     )
     )

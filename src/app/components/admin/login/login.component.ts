@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           this.tokenService.saveToken(token);
           this.authenticationService.validateToken();
           this.tokenService.setRoles(response.body!.role);
-          this.authenticationService.SaveUserLoggedIn(response.body);
+          this.authenticationService.SaveUserId(response.body!.uid);
         }
 
       },

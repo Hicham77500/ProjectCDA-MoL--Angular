@@ -7,13 +7,16 @@ import { AppSettings } from 'src/app/settings/app.settings';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { TokenService } from '../token/token.service';
-
+import {Md5} from 'ts-md5';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  SaveUserLoggedIn(body: User | null) {
-    localStorage.setItem('userLoggedIn', JSON.stringify(body));
+  SaveUserId(id : number) {
+   
+    let addCrypt = Md5.hashStr("test");
+    localStorage.setItem('userLoggedIn', id.toString() );
+    console.log(id)
   }
 
  
