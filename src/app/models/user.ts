@@ -15,6 +15,7 @@ export class User {
     public profileImageURL: string;
     public biography:string;
     public listPost: Post[];
+
     constructor(
         ) {
         this.uid = 0;
@@ -30,5 +31,6 @@ export class User {
         this.role = '';  
         this.age = new Date();  
         this.listPost = [];
+    
     }
 }

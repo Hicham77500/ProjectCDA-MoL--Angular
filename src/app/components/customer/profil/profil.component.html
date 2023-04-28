@@ -28,6 +28,7 @@
                                     <button class="btn btn-dark" (click)="openModalProfil()">Modifier votre
                                         profil</button>
                                 </div>
+                                <!-- button for modal Biography -->
                                 <div>
                                     <button class="btn btn-dark" (click)="openModalBiography()">Modifier votre
                                         biographie</button>
@@ -64,6 +65,41 @@
                     </div>
 
 
+                    <!-- button for modal photos -->
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <h3 class="btn" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab"
+                                        aria-controls="basicInfo" aria-selected="true">Vos Photos</h3>
+                                </li>
+
+                            </ul>
+                            <div class="container">
+
+
+                                <!-- button for modal picture -->
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
+                                        <a (click)="openModalPhoto(post)"><img *ngIf="post.idPost % 2 == 0"
+                                                src="{{urlPict+post.listPictures[0].urlPicture}}"
+                                                class="w-100 shadow-1-strong rounded mb-4"
+                                                alt="Boat on Calm Water" /></a>
+                                        <img *ngIf="post.idPost % 2 != 0"
+                                            src="{{urlPict+post.listPictures[0].urlPicture}}"
+                                            class="w-100 shadow-1-strong rounded mb-4"
+                                            alt="Wintry Mountain Landscape" />
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
                     <!-- modal Profil -->
                     <div class="modal fade" id="myModalProfil" tabindex="-1" role="dialog"
                         aria-labelledby="myModalLabel">
@@ -220,24 +256,16 @@
                                                 </div>
                                             </div>
                                             <hr />
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                                Similique quos, laboriosam eaque debitis
-                                                deserunt dolore. Tempora voluptatem, officia ratione
-                                                perferendis
-                                                nisi quos itaque! Labore officiis
-                                                explicabo recusandae. Sequi, alias enim!
-                                                Veniam adipisci ex assumenda natus illum, facilis magnam
-                                                nulla
-                                                quasi minus omnis error aspernatur, commodi
-                                                eligendi? Ab necessitatibus eius rem est ex voluptatum
-                                                officia
-                                                modi quisquam labore. Ipsum, debitis
-                                                possimus!</p>
+                                            <p>{{selectedPost?.listComments}}</p>
                                             <div class="input-group">
-                                                <textarea class="form-control" aria-label="With textarea"></textarea>
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-dark" type="submit">Publier</button>
-                                                </div>
+                                                <form #CommentForm="ngForm" (ngSubmit)="onComment(CommentForm.value)">
+
+                                                    <textarea class="form-control" name="comment"
+                                                        aria-label="With textarea"></textarea>
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-dark" type="submit">Publier</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -253,38 +281,7 @@
 
 
 
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <h3 class="btn" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab"
-                                    aria-controls="basicInfo" aria-selected="true">Vos Photos</h3>
-                            </li>
 
-                        </ul>
-                        <div class="container">
-
-
-                            <!-- button for modal picture -->
-                            <div class="row">
-                                <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let item of posts">
-                                    <a (click)="openModalPhoto(item)"><img *ngIf="item.idPost % 2 == 0"
-                                            src="{{urlPict+item.listPictures[0].urlPicture}}"
-                                            class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" /></a>
-
-                                    <img *ngIf="item.idPost % 2 != 0" src="{{urlPict+item.listPictures[0].urlPicture}}"
-                                        class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
-                                </div>
-
-
-
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
 
             </div>
         </div>

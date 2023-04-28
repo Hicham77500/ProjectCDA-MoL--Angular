@@ -11,6 +11,8 @@ import { PostService } from 'src/app/services/admin/post/post.service';
 import { UserService } from 'src/app/services/admin/user/user.service';
 
 import { AppSettings } from 'src/app/settings/app.settings';
+import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
+import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
 
 declare var window:any;
 @Component({
@@ -19,6 +21,7 @@ declare var window:any;
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
 
@@ -32,19 +35,17 @@ export class ProfilComponent implements OnInit {
   declare selectedPost:any;
   formModal:any;
   ngOnInit(): void {
-    this.getPosts();
-    this.id = this.userLoggedIn.uid;
+    this.GetUserConnected();
   }
   constructor(
-    private postService: PostService,
-    private authenticationService: AuthenticationService,
-    private userService: UserService,
+    private userCustomerService : UserCustomerService,
+    private postCustomerService: PostCustomerService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
     
   ) {
-    this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn') as any);
+
   }
   openModalProfil() {
     this.formModal = new window.bootstrap.Modal(
@@ -71,10 +72,9 @@ export class ProfilComponent implements OnInit {
     console.log(this.id,user)
     
     this.subscription.push(
-    this.userService.editUser(this.id, user).subscribe(
+    this.userCustomerService.editUser(this.id, user).subscribe(
       (data: any) => {
-        // this.authenticationService.SaveUserLoggedIn(data)
-        this.userLoggedIn = data;
+        this.GetUserConnected();
         this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
        
       },
@@ -82,20 +82,9 @@ export class ProfilComponent implements OnInit {
     )
     )
   }
-  public getPosts() {
-
-    this.subscription.push(
-      this.postService.getPosts().subscribe(
-        (data: any) => {
-          this.posts = data;
-        },
-        (err: HttpErrorResponse) => {
-          this.refreshing = false;
-          this.notificationService.notify(NotificationType.ERROR, err.error['messsage'])
-        }
-      )
-    )
-  }
+  onComment(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
   public onProfileImageChange(event: any, username: string): void {
     console.log(this.pictureFile)
     const files: File[] = event.target.files;
@@ -107,16 +96,23 @@ export class ProfilComponent implements OnInit {
     formData.append('profileImage', this.pictureFile);
 
     this.subscription.push(
-      this.userService.updateProfileImage(formData).subscribe(
+      this.userCustomerService.updateProfileImage(formData).subscribe(
         (data: any) => {
-          console.log(data)
-          
-          // this.authenticationService.SaveUserLoggedIn(data)
-          this.userLoggedIn = data;
-          
+          this.GetUserConnected();
         }
       )
     )
   }
+  public GetUserConnected(){
 
+    this.id =localStorage.getItem('userLoggedIn') as any;
+    this.subscription.push(    
+      this.userCustomerService.getUser(this.id).subscribe(
+        (data : User) => {
+          this.userLoggedIn = data;
+          this.posts = data.listPost;
+        }
+      )
+    )
+  }  
 }
