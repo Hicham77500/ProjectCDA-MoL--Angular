@@ -17,22 +17,22 @@ export class PostService {
 
   }
   public getPosts() {
-    return this.http.get(AppSettings.APP_URL + "/posts");
+    return this.http.get(AppSettings.APP_URL + "/admin/posts");
 
   }
   public getPost(id: number) {
-    return this.http.get<Post>(AppSettings.APP_URL + "/getPost/" + id);
+    return this.http.get<Post>(AppSettings.APP_URL + "/admin/getPost/" + id);
   }
   public addPost(post: Post) { 
     
-    return this.http.post<Post | HttpErrorResponse>(AppSettings.APP_URL + '/posts', post)
+    return this.http.post<Post | HttpErrorResponse>(AppSettings.APP_URL + '/admin/posts', post)
   }
   public editPost(id: number, post: Post) {
-    return this.http.put<Post | HttpErrorResponse>(AppSettings.APP_URL + "/posts/" + id, post);
+    return this.http.put<Post | HttpErrorResponse>(AppSettings.APP_URL + "/admin/posts/" + id, post);
   }
   public deletePost(id: number|null) {
     console.log(id);
-    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/posts/" + id);
+    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/admin/posts/" + id);
   }
   public addPostsToLocalCache(posts: Post[]) : void {
     localStorage.setItem('posts', JSON.stringify(posts));
