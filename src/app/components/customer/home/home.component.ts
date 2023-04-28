@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit{
   declare id : number;
   declare userLoggedIn: User;
   declare posts: any;
+  declare commentsForSelectedPost: any;
   declare selectedPost:any;
   declare public refreshing: boolean;
   urlPict = AppSettings.IMG_PROFIL;
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit{
   
   openModal(post : Post){
     this.selectedPost = post;
+    this.commentsForSelectedPost = post.listComments;
     this.formModal.show();
   }
   // doSomething(){

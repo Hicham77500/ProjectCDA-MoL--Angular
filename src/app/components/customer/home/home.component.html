@@ -3,11 +3,11 @@
   <!-- Trigger the modal with a button -->
 
   <div class="row">
-    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let item of posts">
-      <a (click)="openModal(item)"><img *ngIf="item.idPost % 2 == 0" src="{{urlPict+item.listPictures[0].urlPicture}}"
+    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
+      <a (click)="openModal(post)"><img *ngIf="post.idPost % 2 == 0" src="{{urlPict+post.listPictures[0].urlPicture}}"
           class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" /></a>
 
-      <img *ngIf="item.idPost % 2 != 0" src="{{urlPict+item.listPictures[0].urlPicture}}"
+      <img *ngIf="post.idPost % 2 != 0" src="{{urlPict+post.listPictures[0].urlPicture}}"
         class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
     </div>
 
@@ -71,21 +71,24 @@
           <div class="modal-body inline">
             <div class="row">
               <div class="col-md-3">
-                <img src="{{urlPict+userLoggedIn.profileImageURL}}" width="50" height="50" alt="..." class="img-circle">
+                <img src="{{urlPict+selectedPost?.profileImageURL}}" width="50" height="50" alt="..."
+                  class="img-circle">
               </div>
               <div class="col-md-9">
-                <p>{{userLoggedIn.username}}</p>
+                <p>{{selectedPost?.username}}</p>
                 <br />
                 <!-- <span class="glyphicon glyphicon-heart"></span> Icon -->
               </div>
             </div>
             <hr />
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quos, laboriosam eaque debitis
-              deserunt dolore. Tempora voluptatem, officia ratione perferendis nisi quos itaque! Labore officiis
-              explicabo recusandae. Sequi, alias enim!
-              Veniam adipisci ex assumenda natus illum, facilis magnam nulla quasi minus omnis error aspernatur, commodi
-              eligendi? Ab necessitatibus eius rem est ex voluptatum officia modi quisquam labore. Ipsum, debitis
-              possimus!</p>
+            <div class="container" *ngFor="let comment of commentsForSelectedPost">
+              <p><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+                  src="{{urlPict+comment.profileImageURL}}" alt="">
+                {{comment.username}}</p>
+              <p>{{comment.dateTime|date}}</p>
+              <p>{{comment.comment}}</p>
+
+            </div>
             <div class="input-group">
               <textarea class="form-control" aria-label="With textarea"></textarea>
               <div class="input-group-prepend">
