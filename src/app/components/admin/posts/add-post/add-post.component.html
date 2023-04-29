@@ -5,7 +5,8 @@
     <form #addPostForm="ngForm" (ngSubmit)="onAddPost(addPostForm.value)">
 
       <input type="text"[hidden]="true" name="idUser" ngModel="{{user.uid}}">
-
+      <input type="text" [hidden]="true" name="username" ngModel="{{user.username}}">
+      <input type="text" [hidden]="true" name="profileImageURL" ngModel="{{user.profileImageURL}}">
       <div class="input-group-mb-2">
         <div class="input-group-prepend">
           <span class="input-group-text">Photo de profil</span>

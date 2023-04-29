@@ -5,9 +5,9 @@
         <a href="/admin/listPost" class="btn btn-primary">Retour</a>
         <div class="border">
             <form #addPostForm="ngForm" (ngSubmit)="onAddPost(addPostForm.value)">
-
                 <input type="text" [hidden]="true" name="idUser" ngModel="{{userLoggedIn.uid}}">
-
+                <input type="text" [hidden]="true" name="username" ngModel="{{userLoggedIn.username}}">
+                <input type="text" [hidden]="true" name="profileImageURL" ngModel="{{userLoggedIn.profileImageURL}}">
                 <div class="input-group-mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Photo de profil</span>

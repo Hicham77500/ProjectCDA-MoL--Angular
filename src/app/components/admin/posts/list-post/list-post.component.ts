@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
 import { Post } from 'src/app/models/post';
-import { User } from 'src/app/models/user';
+
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { PictureService } from 'src/app/services/admin/picture/picture.service';
 import { PostService } from 'src/app/services/admin/post/post.service';
