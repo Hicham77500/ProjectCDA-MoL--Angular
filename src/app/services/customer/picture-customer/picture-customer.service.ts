@@ -6,9 +6,7 @@ import { AppSettings } from 'src/app/settings/app.settings';
 @Injectable({
   providedIn: 'root'
 })
-export class PictureService {
-
-  
+export class PictureCustomerService {
 
 
   constructor(private http: HttpClient) {
@@ -31,5 +29,4 @@ export class PictureService {
     
     return this.http.delete<any | HttpErrorResponse>(AppSettings.APP_URL + "/delete/" + id);
   }
-  
 }

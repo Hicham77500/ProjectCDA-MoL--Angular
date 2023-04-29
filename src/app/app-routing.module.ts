@@ -16,6 +16,7 @@ import { ListPostComponent } from './components/admin/posts/list-post/list-post.
 import { RegisterComponent } from './components/admin/register/register.component';
 import { NavbarComponent } from './components/customer/navbar/navbar.component';
 import { ProfilComponent } from './components/customer/profil/profil.component';
+import { PublishComponent } from './components/customer/publish/publish.component';
 
 
 const authGuardFn: CanActivateFn = () => {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent
+      },
+      {
+        path: 'publish',
+        component: PublishComponent
       },
       {
         path: 'profil',

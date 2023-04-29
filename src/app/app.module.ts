@@ -18,6 +18,7 @@ import { NavbarComponent } from './components/customer/navbar/navbar.component';
 import { ProfilComponent } from './components/customer/profil/profil.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NotificationModule } from './services/notification/notification.module';
+import { PublishComponent } from './components/customer/publish/publish.component';
 
 
 
@@ -39,6 +40,7 @@ import { NotificationModule } from './services/notification/notification.module'
     EditPostComponent,
     ListPostComponent,
     ProfilComponent,
+    PublishComponent,
 
 
   ],
