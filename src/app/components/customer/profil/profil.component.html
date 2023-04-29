@@ -261,7 +261,8 @@
                                                 {{selectedPost?.description}}
                                             </p>
                                             <div class="small d-flex justify-content-start">
-                                                <a  class="d-flex align-items-center me-3">
+                                                
+                                                <a  class="d-flex align-items-center me-3" (click)="LikeOrUnlike(selectedPost?.idPost)">
                                                     <i class="far fa-heart fa-lg"></i>
                                                 </a>
                                                 <a  class="d-flex align-items-center me-3"
@@ -270,6 +271,9 @@
                                                 </a>
                                                 <br>
                                                 <br>
+                                            </div>
+                                            <div class="small d-flex justify-content-start">
+                                                328 J'aime
                                             </div>
                                         </div>
                                         <div class="row d-flex justify-content-center d-none" id="commentProfil">

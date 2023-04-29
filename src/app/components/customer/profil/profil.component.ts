@@ -12,6 +12,7 @@ import { AppSettings } from 'src/app/settings/app.settings';
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
 import { CommentCustomerService } from 'src/app/services/customer/comment-customer/comment-customer.service';
+import { LikeCustomerService } from 'src/app/services/customer/like-customer/like-customer.service';
 
 declare var window: any;
 @Component({
@@ -20,6 +21,7 @@ declare var window: any;
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+
 
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
@@ -39,6 +41,7 @@ export class ProfilComponent implements OnInit {
   constructor(
     private userCustomerService: UserCustomerService,
     private commentCustomerService: CommentCustomerService,
+    private likeCustomerService: LikeCustomerService,
     private notificationService: NotificationService
 
   ) {
@@ -48,10 +51,7 @@ export class ProfilComponent implements OnInit {
     const comment = document.getElementById('commentProfil');
     console.log(comment?.classList)
     if (comment?.classList.contains("d-none")) {
-
       comment?.classList.remove('d-none');
-
-
     } else {
       comment?.classList.add('d-none');
     }
@@ -62,13 +62,23 @@ export class ProfilComponent implements OnInit {
     console.log(comment?.classList)
     if (!comment?.classList.contains("d-none")) {
       comment?.classList.add('d-none');
-
-   
-
-
     } 
-
   }
+  LikeOrUnlike(idPost : number) {
+    const formData = new FormData();
+    formData.append('idPost', idPost.toString());
+    formData.append('idUser', this.userLoggedIn.uid.toString());
+    this.subscription.push(
+      this.likeCustomerService.addLike(formData).subscribe(
+        (data: any) => {
+          this.GetUserConnected();
+          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+
+        },
+        (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
+      )
+    )
+    }
   openModalProfil() {
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("myModalProfil")
