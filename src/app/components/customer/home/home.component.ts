@@ -72,14 +72,11 @@ export class HomeComponent implements OnInit {
   
   }
   closeComment() {
-    const comment = document.getElementById('commentProfil');
+    const comment = document.getElementById('comment');
     console.log(comment?.classList)
     if (!comment?.classList.contains("d-none")) {
       comment?.classList.add('d-none');
-  
-   
-  
-  
+
     } 
   
   }

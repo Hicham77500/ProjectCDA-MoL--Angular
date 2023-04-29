@@ -25,16 +25,20 @@
                                 </div>
                                 <!-- button for modal Profil -->
                                 <div>
-                                    <button class="btn btn-dark" (click)="openModalProfil()">Modifier votre
-                                        profil</button>
-                                </div>
+                                    <button class="btn btn-dark d-inline" (click)="openModalProfil()"><i class="fas fa-id-card fa-lg"></i></button>
+                               
                                 <!-- button for modal Biography -->
-                                <div>
-                                    <button class="btn btn-dark" (click)="openModalBiography()">Modifier votre
-                                        biographie</button>
+                                
+                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i class="fas fa-pen-fancy fa-lg"></i></button>
+                                <!-- button for modal password -->   
+                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i class="far fa-key fa-lg"></i></button>
+                               
+                                <!-- button for modal Security -->
+                                    
+                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i class="fas fa-shield-alt fa-lg"></i></button>
+                                    
                                 </div>
-
-
+                                
                             </div>
                             <div class="userData ml-3">
                                 <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold; margin-left:10px">
@@ -53,15 +57,16 @@
 
                                     8 Suivi(e)
                                 </h6>
-                                <h6 class="d-block">
-                                    <H5>Biographie :</H5>
-                                    <textarea class="form-control" name="" id="" cols="100"
-                                        rows="5">{{userLoggedIn.biography}}</textarea>
-
-                                </h6>
+                              
                             </div>
-
+                            
                         </div>
+                        <h6 class="d-block">
+                            <H5>Biographie :</H5>
+                            <textarea class="form-control" name="" id="" cols="100"
+                                rows="5">{{userLoggedIn.biography}}</textarea>
+
+                        </h6>
                     </div>
 
 
