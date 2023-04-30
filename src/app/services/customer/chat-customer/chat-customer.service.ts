@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
+import { Chat } from 'src/app/models/chat';
 import { AppSettings } from 'src/app/settings/app.settings';
 
 @Injectable({
