@@ -49,7 +49,7 @@ const routes: Routes = [
         component: ProfilComponent
       },
       {
-        path: 'profil',
+        path: 'profil/:username',
         component: ProfilVisitComponent
       }
     ]

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
@@ -12,17 +12,16 @@ import { PostCustomerService } from 'src/app/services/customer/post-customer/pos
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { AppSettings } from 'src/app/settings/app.settings';
-
 declare var window: any;
 @Component({
   selector: 'app-profil-visit',
   templateUrl: './profil-visit.component.html',
   styleUrls: ['./profil-visit.component.css']
 })
-export class ProfilVisitComponent {
+export class ProfilVisitComponent implements OnInit{
 
 
-
+  declare actualProfil : any;
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
   declare commentsForSelectedPost: any;
@@ -38,12 +37,17 @@ export class ProfilVisitComponent {
   declare userLoggedIn: User;
   declare selectedPost: any;
   formModal: any;
-
+  
   ngOnInit(): void {
+    const username = String(this.route.snapshot.paramMap.get('username'));
+    this.getDataForProfile(username);
+    console.log(username)
     this.GetUserConnected();
   }
   constructor(
-    private router: Router,
+
+     private router: Router,
+    private route: ActivatedRoute,
     private userCustomerService: UserCustomerService,
     private postCustomerService: PostCustomerService,
     private commentCustomerService: CommentCustomerService,
@@ -52,6 +56,16 @@ export class ProfilVisitComponent {
 
   ) {
 
+  }
+  public getDataForProfile(username :string){
+    this.subscription.push(
+    this.userCustomerService.getUserByUsername(username).subscribe(
+      (data: User) => {
+        this.actualProfil = data;
+      }
+    )
+    )  
+    
   }
   // permet de savoir quel utilisateur est connecté
   public GetUserConnected() {

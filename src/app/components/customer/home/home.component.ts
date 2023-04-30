@@ -21,9 +21,13 @@ declare var window: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+seeProfil(arg0: { "": any; }) {
+throw new Error('Method not implemented.');
+}
 
   formModal: any;
   declare id: number;
+
   declare userLoggedIn: User;
   declare posts: any;
   declare commentsForSelectedPost: any;
@@ -35,6 +39,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getPosts();
     this.GetUserConnected();
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("myModalPhoto")
+    );
   }
   constructor(
     private userCustomerService: UserCustomerService,
@@ -81,14 +88,14 @@ export class HomeComponent implements OnInit {
   
   }
   openModal(post: Post) {
-    this.formModal = new window.bootstrap.Modal(
-      document.getElementById("myModalPhoto")
-    );
+   
     this.selectedPost = post;
     this.commentsForSelectedPost = post.listComments;
     this.formModal.show();
   }
-
+  closeModal() {
+    this.formModal.hide();
+  }
   public getPosts() {
 
     this.subscription.push(

@@ -93,7 +93,7 @@
                                                 src="{{urlPict+post.listPictures[0].urlPicture}}"
                                                 class="w-100 shadow-1-strong rounded mb-4"
                                                 alt="Boat on Calm Water" /></a>
-                                        
+
                                     </div>
 
 
@@ -201,11 +201,9 @@
                                             <form #sendActualPasswordForm="ngForm"
                                                 (ngSubmit)="sendActualPassword(sendActualPasswordForm.value)">
                                                 <H5>Identifiant:</H5>
-                                                <input type="text" class="form-control" ngModel name="username" 
-                                                    >
+                                                <input type="text" class="form-control" ngModel name="username">
                                                 <H5>Mot de passe actuel:</H5>
-                                                <input type="password" class="form-control" ngModel name="password" 
-                                                    >
+                                                <input type="password" class="form-control" ngModel name="password">
                                                 <button type="submit">Envoyer</button>
                                             </form>
                                             {{sendActualPasswordForm.value|json}}
@@ -216,17 +214,16 @@
                                         <h6 class="d-block">
                                             <form #changePasswordForm="ngForm"
                                                 (ngSubmit)="changePassword(changePasswordForm.value)">
-                                                <input type="hidden" ngModel="{{userLoggedIn.username}}" name="username">
+                                                <input type="hidden" ngModel="{{userLoggedIn.username}}"
+                                                    name="username">
                                                 <H5>Nouveau mot de passe:</H5>
-                                                <input type="password" class="form-control" ngModel name="password" 
-                                                    >
+                                                <input type="password" class="form-control" ngModel name="password">
                                                 <H5>répéter le mot de passe:</H5>
-                                                <input type="password" class="form-control" ngModel name="plain" 
-                                                    >
+                                                <input type="password" class="form-control" ngModel name="plain">
                                                 <button type="submit">Envoyer</button>
                                             </form>
                                             {{changePasswordForm.value|json}}
-                                            
+
                                         </h6>
                                     </div>
                                 </div>
@@ -241,9 +238,10 @@
                                 <div class="row">
                                     <div class="container">
                                         <h6 class="d-block">
-                                            <form #deleteUserForm="ngForm" (ngSubmit)="onDeleteUser(deleteUserForm.value)">
+                                            <form #deleteUserForm="ngForm"
+                                                (ngSubmit)="onDeleteUser(deleteUserForm.value)">
                                                 <H5>Souhaitez-vous supprimer votre compte définitivement?</H5>
-                                                
+
                                                 <input type="hidden" ngModel="{{userLoggedIn.uid}}" name="uid">
                                                 <button class="btn btn-danger" type="submit">Oui</button>
                                                 <button class="btn btn-success">Non</button>
@@ -370,6 +368,11 @@
                                                         </div>
                                                         <p class="mt-3 mb-4 pb-2">
                                                             {{comment.comment}}
+                                                        </p>
+                                                        <p *ngIf="comment.idUser == userLoggedIn.uid">
+                                                            <button><i class="fas fa-edit fa-sm"></i></button>
+
+                                                            <button><i class="fas fa-trash fa-sm"></i></button>
                                                         </p>
                                                     </div>
                                                     <div class="card-footer py-3 border-0"

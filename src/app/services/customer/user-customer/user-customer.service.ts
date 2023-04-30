@@ -17,9 +17,12 @@ export class UserCustomerService {
   constructor(private http: HttpClient) {
 
   }
+  public getUserByUsername(username : string){
+    return this.http.get<User>(AppSettings.APP_URL + "/findUser/" + username);
+  }
   public getUsers() {
     return this.http.get(AppSettings.APP_URL + "/listUser");
-
+    
   }
   public getUser(id: number) {
     return this.http.get<User>(AppSettings.APP_URL + "/getUser/" + id);
