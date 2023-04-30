@@ -20,6 +20,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NotificationModule } from './services/notification/notification.module';
 import { PublishComponent } from './components/customer/publish/publish.component';
 import { ProfilVisitComponent } from './components/customer/profil-visit/profil-visit.component';
+import { ChatComponent } from './components/customer/chat/chat.component';
 
 
 
@@ -43,6 +44,7 @@ import { ProfilVisitComponent } from './components/customer/profil-visit/profil-
     ProfilComponent,
     PublishComponent,
     ProfilVisitComponent,
+    ChatComponent,
 
 
   ],
