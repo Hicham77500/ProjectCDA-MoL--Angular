@@ -65,6 +65,12 @@ throw new Error('Method not implemented.');
       )
     )
   }
+  DeleteComment(id: number) {
+    this.commentCustomerService.deleteComment(id).subscribe(
+     ()=> console.log("cesst bobnbnbnbbnobn")
+      
+    )
+    }
   openAndCloseComment() {
     const comment = document.getElementById('comment');
     console.log(comment?.classList)

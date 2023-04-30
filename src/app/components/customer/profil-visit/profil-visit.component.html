@@ -203,7 +203,7 @@
                                                         <p *ngIf="comment.idUser == userLoggedIn.uid">
                                                             <button><i class="fas fa-edit fa-sm"></i></button>
 
-                                                            <button><i class="fas fa-trash fa-sm"></i></button>
+                                                            <button (click)="DeleteComment(comment.idComment)"><i class="fas fa-trash fa-sm"></i></button>
                                                           </p>
                                                     </div>
                                                     <div class="card-footer py-3 border-0"
@@ -212,7 +212,7 @@
                                                             (ngSubmit)="onComment(CommentForm.value)">
                                                             <div class="d-flex flex-start w-100">
                                                                 <img class="rounded-circle shadow-1-strong me-3"
-                                                                    src="{{urlPict+actualProfil.profileImageURL}}"
+                                                                    src="{{urlPict+userLoggedIn.profileImageURL}}"
                                                                     alt="avatar" width="40" height="40" />
                                                                 <div class="form-outline w-100">
                                                                     <input type="hidden"

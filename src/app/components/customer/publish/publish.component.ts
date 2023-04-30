@@ -46,7 +46,7 @@ export class PublishComponent implements OnInit{
       formData.append('idPost', data.idPost.toString());
       formData.append('pictureFile', this.pictureFile);
       this.pictureCustomerService.addPicture(formData).subscribe();
-      this.router.navigateByUrl('/profil');}
+      this.router.navigateByUrl('/home');}
       ,
 
       (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['message'])

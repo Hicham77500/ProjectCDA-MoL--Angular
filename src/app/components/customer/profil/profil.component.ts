@@ -25,8 +25,7 @@ declare var window: any;
 })
 export class ProfilComponent implements OnInit {
 
-
-
+ 
   urlPict = AppSettings.IMG_PROFIL;
   private subscription: Subscription[] = [];
   declare commentsForSelectedPost: any;
@@ -115,6 +114,12 @@ export class ProfilComponent implements OnInit {
       )
     )
   }
+  DeleteComment(id: number) {
+    this.commentCustomerService.deleteComment(id).subscribe(
+     ()=> console.log("cesst bobnbnbnbbnobn")
+      
+    )
+    }
   // aimer ou enlever aime d'un post
   addHeart(heart: Heart) {
     if (this.postLikeByUser == false) {

@@ -113,9 +113,11 @@
                   </p>
                   <p *ngIf="comment.idUser == userLoggedIn.uid">
                     <button><i class="fas fa-edit fa-sm"></i></button>
-
-                    <button><i class="fas fa-trash fa-sm"></i></button>
+                    <button (click)="DeleteComment(comment.idComment)"><i class="fas fa-trash fa-sm"></i></button>
+                    
                   </p>
+                  {{comment.idUser|json}}
+                  {{userLoggedIn.uid|json}}
                 </div>
                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                   <form #CommentForm="ngForm" (ngSubmit)="onComment(CommentForm.value)">

@@ -19,6 +19,12 @@ declare var window: any;
   styleUrls: ['./profil-visit.component.css']
 })
 export class ProfilVisitComponent implements OnInit{
+DeleteComment(id: number) {
+this.commentCustomerService.deleteComment(id).subscribe(
+ ()=> console.log("cesst bobnbnbnbbnobn")
+  
+)
+}
 
 
   declare actualProfil : any;
@@ -58,10 +64,16 @@ export class ProfilVisitComponent implements OnInit{
 
   }
   public getDataForProfile(username :string){
+    console.log(username);
+    
     this.subscription.push(
     this.userCustomerService.getUserByUsername(username).subscribe(
       (data: User) => {
+        console.log(data);
+        
         this.actualProfil = data;
+        this.posts = data.listPost;
+        console.log(this.actualProfil)
       }
     )
     )  
@@ -80,51 +92,7 @@ export class ProfilVisitComponent implements OnInit{
       )
     )
   }
-  changePassword(user: User) {
-    this.userCustomerService.changePassword(user).subscribe(
-      (data: any) => {
-        console.log(data)
-        this.openChangePassword();
-      },
-      (error: any) => {
-        console.log(error);
-      }
 
-    );
-  }
-  sendActualPassword(user: User) {
-
-    this.userCustomerService.checkPassword(user).subscribe(
-
-      (data: any) => {
-        console.log(data)
-        this.openChangePassword();
-
-
-      },
-      (error: any) => {
-        this.closeChangePassword();
-        console.log(error);
-
-      }
-
-    );
-  }
-
-  onDeleteUser(id: number) {
-
-    this.subscription.push(
-      this.userCustomerService.deleteUser(id).subscribe(
-        (data: CustomHttpResponse) => {
-          this.notificationService.notify(NotificationType.SUCCESS, `Votre compte a été supprimé définitivement`);
-          this.router.navigateByUrl("/register")
-        },
-        (errorResponse: HttpErrorResponse) => {
-          this.notificationService.notify(NotificationType.ERROR, errorResponse.error.message);
-        }
-      )
-    )
-  }
   // aimer ou enlever aime d'un post
   addHeart(heart: Heart) {
     if (this.postLikeByUser == false) {
@@ -182,23 +150,7 @@ export class ProfilVisitComponent implements OnInit{
       )
     )
   }
-  //modifier le profil
-  onEdit(user: User) {
-    this.subscription.push(
-      this.userCustomerService.editUser(this.id, user).subscribe(
-        (data: any) => {
-          this.GetUserConnected();
-          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
-
-        },
-        (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
-      )
-    )
-  }
-
-
-
-
+  
   //ajouter un commentaire
   onComment(comment: any) {
     console.log(comment)
@@ -216,29 +168,6 @@ export class ProfilVisitComponent implements OnInit{
     )
   }
 
-
-
-
-  // permet de modifier la photo de profil
-  public onProfileImageChange(event: any, username: string): void {
-    console.log(this.pictureFile)
-    const files: File[] = event.target.files;
-    let file: File = event.target.files[event.target.files.length - 1] as File;
-    this.fileName = file.name;
-    this.pictureFile = file;
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('profileImage', this.pictureFile);
-
-    this.subscription.push(
-      this.userCustomerService.updateProfileImage(formData).subscribe(
-        (data: any) => {
-          this.GetUserConnected();
-        }
-      )
-    )
-  }
-
   // ouvre le modal pour la configuration du profil
   openModalProfil() {
     this.formModal = new window.bootstrap.Modal(
@@ -246,40 +175,7 @@ export class ProfilVisitComponent implements OnInit{
     );
     this.formModal.show();
   }
-  // ouvre le modal pour la configuration de la bio
-  openModalBiography() {
-    this.formModal = new window.bootstrap.Modal(
-      document.getElementById("myModalBiography")
-    );
-
-    this.formModal.show();
-  }
-
-  openModalPassword() {
-    this.closeChangePassword();
-    this.formModal = new window.bootstrap.Modal(
-      document.getElementById("myModalResetPassword")
-    );
-    this.formModal.show();
-  }
-  openChangePassword() {
-    const comment = document.getElementById('changePassword');
-
-    comment?.classList.remove('d-none');
-  }
-  // modal change password pour etre sur qu'il soit fermé
-  closeChangePassword() {
-    const comment = document.getElementById('changePassword');
-    if (!comment?.classList.contains("d-none")) {
-      comment?.classList.add('d-none');
-    }
-  }
-  openModalForDeleteUser() {
-    this.formModal = new window.bootstrap.Modal(
-      document.getElementById("myModalDeleteUser")
-    );
-    this.formModal.show();
-  }
+ 
   //open and close comment part of the modal
   openAndCloseComment() {
     const comment = document.getElementById('commentProfil');

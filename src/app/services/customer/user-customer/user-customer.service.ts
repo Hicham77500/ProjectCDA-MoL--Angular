@@ -18,6 +18,8 @@ export class UserCustomerService {
 
   }
   public getUserByUsername(username : string){
+    console.log(username);
+    
     return this.http.get<User>(AppSettings.APP_URL + "/findUser/" + username);
   }
   public getUsers() {
