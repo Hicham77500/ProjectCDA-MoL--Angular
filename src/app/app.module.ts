@@ -19,6 +19,7 @@ import { ProfilComponent } from './components/customer/profil/profil.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NotificationModule } from './services/notification/notification.module';
 import { PublishComponent } from './components/customer/publish/publish.component';
+import { ProfilVisitComponent } from './components/customer/profil-visit/profil-visit.component';
 
 
 
@@ -41,6 +42,7 @@ import { PublishComponent } from './components/customer/publish/publish.componen
     ListPostComponent,
     ProfilComponent,
     PublishComponent,
+    ProfilVisitComponent,
 
 
   ],

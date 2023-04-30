@@ -1,29 +1,25 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
-import { Post } from 'src/app/models/post';
+import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
+import { Heart } from 'src/app/models/heart';
 import { User } from 'src/app/models/user';
-import { NotificationService } from 'src/app/services/notification/notification.service';
-
-
-import { AppSettings } from 'src/app/settings/app.settings';
+import { CommentCustomerService } from 'src/app/services/customer/comment-customer/comment-customer.service';
+import { HeartCustomerService } from 'src/app/services/customer/heart-customer/heart-customer.service';
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
-import { CommentCustomerService } from 'src/app/services/customer/comment-customer/comment-customer.service';
-import { Heart } from 'src/app/models/heart';
-import { HeartCustomerService } from 'src/app/services/customer/heart-customer/heart-customer.service';
-import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
-
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { AppSettings } from 'src/app/settings/app.settings';
 
 declare var window: any;
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+  selector: 'app-profil-visit',
+  templateUrl: './profil-visit.component.html',
+  styleUrls: ['./profil-visit.component.css']
 })
-export class ProfilComponent implements OnInit {
+export class ProfilVisitComponent {
 
 
 

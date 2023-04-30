@@ -22,10 +22,10 @@
                     </div>
                 </div>
 
+                <label for="floatingInput">Description</label>
                 <div class="form-floating mb-3">
-                    <label for="floatingInput">Description</label>
                     <textarea ngModel name="description" class="form-control" id="floatingInput"
-                        placeholder="la description de votre choix" required cols="30" rows="10"></textarea>
+                     required cols="30" rows="10"></textarea>
 
                 </div>
 
@@ -34,7 +34,7 @@
 
 
 
-                <button type="submit" [disabled]="addPostForm.invalid  ">Envoyer</button>
+                <button type="submit" [disabled]="addPostForm.invalid ">Envoyer</button>
             </form>
         </div>
     </div>

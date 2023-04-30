@@ -8,6 +8,12 @@ import { AppSettings } from 'src/app/settings/app.settings';
   providedIn: 'root'
 })
 export class UserCustomerService {
+  checkPassword(user: User) {
+    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/checkPassword', user)
+  }
+  changePassword(user: User) {
+    return this.http.post<User | HttpErrorResponse>(AppSettings.APP_URL + '/changePassword', user)
+  }
   constructor(private http: HttpClient) {
 
   }

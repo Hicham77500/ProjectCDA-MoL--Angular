@@ -7,6 +7,7 @@ export class Post {
     public profileImageURL: string;
     public listPictures: string[];
     public listComments: string[];
+    public listHearts: string[];
 
     constructor(
     ) {
@@ -18,5 +19,6 @@ export class Post {
         this.date = new Date();
         this.listPictures = [];
         this.listComments = [];
+        this.listHearts = [];
     }
 }

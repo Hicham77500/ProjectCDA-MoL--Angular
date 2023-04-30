@@ -17,6 +17,7 @@ import { RegisterComponent } from './components/admin/register/register.componen
 import { NavbarComponent } from './components/customer/navbar/navbar.component';
 import { ProfilComponent } from './components/customer/profil/profil.component';
 import { PublishComponent } from './components/customer/publish/publish.component';
+import { ProfilVisitComponent } from './components/customer/profil-visit/profil-visit.component';
 
 
 const authGuardFn: CanActivateFn = () => {
@@ -44,8 +45,12 @@ const routes: Routes = [
         component: PublishComponent
       },
       {
-        path: 'profil',
+        path: 'myProfil',
         component: ProfilComponent
+      },
+      {
+        path: 'profil',
+        component: ProfilVisitComponent
       }
     ]
   },

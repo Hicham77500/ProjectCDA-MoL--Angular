@@ -17,7 +17,7 @@ export class PostCustomerService {
 
   }
   public getPost(id: number) {
-    return this.http.get<Post>(AppSettings.APP_URL + "/getPost/" + id);
+    return this.http.get<Post>(AppSettings.APP_URL + "/getPosts/" + id);
   }
   public addPost(post: Post) { 
     

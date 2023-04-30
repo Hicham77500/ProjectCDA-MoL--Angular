@@ -5,10 +5,10 @@
   <div class="row">
     <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
       <a (click)="openModal(post)" (click)="closeComment()"><img *ngIf="post.idPost % 2 == 0" src="{{urlPict+post.listPictures[0].urlPicture}}"
-          class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" /></a>
+          class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
 
       <img *ngIf="post.idPost % 2 != 0" src="{{urlPict+post.listPictures[0].urlPicture}}"
-        class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
+        class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" /></a>
     </div>
 
 
@@ -73,7 +73,7 @@
               <img class="rounded-circle shadow-1-strong me-3" src="{{urlPict+selectedPost?.profileImageURL}}"
                 alt="avatar" width="60" height="60" />
               <div>
-                <h6 class="fw-bold text-primary mb-1">{{selectedPost?.username}}</h6>
+                <h6 class="fw-bold text-primary mb-1"><a routerLink="/profil/{{selectedPost?.username}}"> {{selectedPost?.username}}</a></h6>
                 <p class="text-muted small mb-0">
                   {{selectedPost?.date|date}}
                 </p>

@@ -25,20 +25,24 @@
                                 </div>
                                 <!-- button for modal Profil -->
                                 <div>
-                                    <button class="btn btn-dark d-inline" (click)="openModalProfil()"><i class="fas fa-id-card fa-lg"></i></button>
-                               
-                                <!-- button for modal Biography -->
-                                
-                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i class="fas fa-pen-fancy fa-lg"></i></button>
-                                <!-- button for modal password -->   
-                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i class="far fa-key fa-lg"></i></button>
-                               
-                                <!-- button for modal Security -->
-                                    
-                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i class="fas fa-shield-alt fa-lg"></i></button>
-                                    
+                                    <button class="btn btn-dark d-inline" (click)="openModalProfil()"><i
+                                            class="fas fa-id-card fa-lg"></i></button>
+
+                                    <!-- button for modal Biography -->
+
+                                    <button class="btn btn-dark d-inline" (click)="openModalBiography()"><i
+                                            class="fas fa-pen-fancy fa-lg"></i></button>
+                                    <!-- button for modal password -->
+                                    <button class="btn btn-dark d-inline" (click)="openModalPassword()"><i
+                                            class="far fa-key fa-lg"></i></button>
+
+                                    <!-- button for modal Security -->
+
+                                    <button class="btn btn-dark d-inline" (click)="openModalForDeleteUser()">
+                                        <i class="far fa-user-slash fa-lg"></i></button>
+
                                 </div>
-                                
+
                             </div>
                             <div class="userData ml-3">
                                 <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold; margin-left:10px">
@@ -57,9 +61,9 @@
 
                                     8 Suivi(e)
                                 </h6>
-                              
+
                             </div>
-                            
+
                         </div>
                         <h6 class="d-block">
                             <H5>Biographie :</H5>
@@ -70,7 +74,6 @@
                     </div>
 
 
-                    <!-- button for modal photos -->
                     <div class="row">
                         <div class="col-12">
                             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
@@ -86,14 +89,11 @@
                                 <!-- button for modal picture -->
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
-                                        <a (click)="openModalPhoto(post)" (click)="closeComment()"><img *ngIf="post.idPost % 2 == 0"
+                                        <a (click)="openModalPhoto(post.idPost)" (click)="closeComment()"><img
                                                 src="{{urlPict+post.listPictures[0].urlPicture}}"
                                                 class="w-100 shadow-1-strong rounded mb-4"
                                                 alt="Boat on Calm Water" /></a>
-                                        <img *ngIf="post.idPost % 2 != 0"
-                                            src="{{urlPict+post.listPictures[0].urlPicture}}"
-                                            class="w-100 shadow-1-strong rounded mb-4"
-                                            alt="Wintry Mountain Landscape" />
+                                        
                                     </div>
 
 
@@ -190,6 +190,71 @@
                             </div>
                         </div>
                     </div>
+                    <!-- modal reset password -->
+                    <div class="modal fade" id="myModalResetPassword" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="container">
+                                        <h6 class="d-block">
+                                            <form #sendActualPasswordForm="ngForm"
+                                                (ngSubmit)="sendActualPassword(sendActualPasswordForm.value)">
+                                                <H5>Identifiant:</H5>
+                                                <input type="text" class="form-control" ngModel name="username" 
+                                                    >
+                                                <H5>Mot de passe actuel:</H5>
+                                                <input type="password" class="form-control" ngModel name="password" 
+                                                    >
+                                                <button type="submit">Envoyer</button>
+                                            </form>
+                                            {{sendActualPasswordForm.value|json}}
+
+                                        </h6>
+                                    </div>
+                                    <div class="container d-none" id="changePassword">
+                                        <h6 class="d-block">
+                                            <form #changePasswordForm="ngForm"
+                                                (ngSubmit)="changePassword(changePasswordForm.value)">
+                                                <input type="hidden" ngModel="{{userLoggedIn.username}}" name="username">
+                                                <H5>Nouveau mot de passe:</H5>
+                                                <input type="password" class="form-control" ngModel name="password" 
+                                                    >
+                                                <H5>répéter le mot de passe:</H5>
+                                                <input type="password" class="form-control" ngModel name="plain" 
+                                                    >
+                                                <button type="submit">Envoyer</button>
+                                            </form>
+                                            {{changePasswordForm.value|json}}
+                                            
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal delete account -->
+                    <div class="modal fade" id="myModalDeleteUser" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="container">
+                                        <h6 class="d-block">
+                                            <form #deleteUserForm="ngForm" (ngSubmit)="onDeleteUser(deleteUserForm.value)">
+                                                <H5>Souhaitez-vous supprimer votre compte définitivement?</H5>
+                                                
+                                                <input type="hidden" ngModel="{{userLoggedIn.uid}}" name="uid">
+                                                <button class="btn btn-danger" type="submit">Oui</button>
+                                                <button class="btn btn-success">Non</button>
+                                            </form>
+                                            {{deleteUserForm.value|json}}
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Modal Picture-->
                     <div class="modal fade" id="myModalPhoto" tabindex="-1" role="dialog"
                         aria-labelledby="myModalLabel">
@@ -261,11 +326,21 @@
                                                 {{selectedPost?.description}}
                                             </p>
                                             <div class="small d-flex justify-content-start">
-                                                
-                                                <a  class="d-flex align-items-center me-3" (click)="LikeOrUnlike(selectedPost?.idPost)">
-                                                    <i class="far fa-heart fa-lg"></i>
-                                                </a>
-                                                <a  class="d-flex align-items-center me-3"
+                                                <form #likeForm="ngForm" (ngSubmit)="addHeart(likeForm.value)">
+                                                    <input type="hidden" ngModel="{{selectedPost?.idPost}}"
+                                                        name="idPost">
+                                                    <input type="hidden" ngModel="{{selectedPost?.idUser}}"
+                                                        name="idUser">
+                                                    <button class="d-flex align-items-center me-3"
+                                                        *ngIf="!postLikeByUser" type="submit">
+                                                        <i class="far fa-heart fa-lg"></i>
+                                                    </button>
+                                                    <button class="d-flex align-items-center me-3"
+                                                        *ngIf="postLikeByUser" type="submit">
+                                                        <i class="fas fa-heart fa-lg"></i>
+                                                    </button>
+                                                </form>
+                                                <a class="d-flex align-items-center me-3"
                                                     (click)="openAndCloseComment()">
                                                     <i class="far fa-comments fa-lg"></i>
                                                 </a>
