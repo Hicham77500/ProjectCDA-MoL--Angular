@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/models/user';
+import { ChatCustomerService } from 'src/app/services/customer/chat-customer/chat-customer.service';
 import { CommentCustomerService } from 'src/app/services/customer/comment-customer/comment-customer.service';
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
@@ -39,8 +40,8 @@ public chat(idUser: number) {
   }
   constructor(
     private userCustomerService: UserCustomerService,
-    private postCustomerService: PostCustomerService,
-    private commentCustomerService: CommentCustomerService,
+    private chatCustomerService: ChatCustomerService,
+    
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
