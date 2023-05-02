@@ -67,7 +67,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
                                         <a (click)="openModalPhoto(post.idPost)" (click)="closeComment()"><img
-                                                src="{{urlPict+post.listPictures[0].urlPicture}}"
+                                                src="{{urlPict+post.postImageUrl}}"
                                                 class="w-100 shadow-1-strong rounded mb-4"
                                                 alt="Boat on Calm Water" /></a>
                                         

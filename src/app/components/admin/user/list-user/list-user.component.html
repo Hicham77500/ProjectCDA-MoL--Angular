@@ -27,43 +27,45 @@
 
   </div>
   <br>
-  <table id="table_id" class="table ">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Photo</th>
-        <th scope="col">Email</th>
-        <th scope="col">Genre</th>
-        <th scope="col">Identifiant</th>
-        <th scope="col">Nom complet</th>
-        <th scope="col">Date naissance</th>
-        <th scope="col">ACTION</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <th scope="row"> {{user.uid}}</th>
-        <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
-            src="{{urlPict+user.profileImageURL}}" alt=""></td>
-        <td scope="row">{{user.email}}</td>
-        <td scope="row">{{user.genre}}</td>
-        <td scope="row">{{user.username}}</td>
-        <td scope="row">{{user.completeName}}</td>
-        <td scope="row">{{user.age|date }}</td>
+  <div class="container">
+    <table id="table_id" class="table ">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Email</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Identifiant</th>
+          <th scope="col">Nom complet</th>
+          <th scope="col">Date naissance</th>
+          <th scope="col">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <th scope="row"> {{user.uid}}</th>
+          <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+              src="{{urlPict+user.profileImageURL}}" alt=""></td>
+          <td scope="row">{{user.email}}</td>
+          <td scope="row">{{user.genre}}</td>
+          <td scope="row">{{user.username}}</td>
+          <td scope="row">{{user.completeName}}</td>
+          <td scope="row">{{user.age|date }}</td>
 
-        <td>
-          <div class="btn-group">
-            <a routerLink="/admin/editUser/{{user.uid}}"
-              class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
-            </a>
+          <td>
+            <div class="btn-group">
+              <a routerLink="/admin/editUser/{{user.uid}}"
+                class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
+              </a>
 
-            <button class="btn btn-danger" (click)="onDeleteUser(user.uid)">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
+              <button class="btn btn-danger" (click)="onDeleteUser(user.uid)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
 
-  </table>
+    </table>
+  </div>
 </div>

@@ -1,5 +1,23 @@
 <div class="container">
+  <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group me-2" role="group" aria-label="First group">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          trier
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+        </ul>
+      </div>
 
+    </div>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Rechercher un post" aria-label="Input group example" aria-describedby="btnGroupAddon">
+      <button class="btn btn-outline-dark" id="btnGroupAddon">@</button>
+    </div>
+  </div>
+  
   <!-- Trigger the modal with a button -->
 
   <div class="row">
@@ -33,6 +51,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active" data-bs-interval="10000">
                 <img src="{{urlPict+selectedPost?.postImageUrl}}" class="d-block w-100" alt="...">
+                
                 <div class="carousel-caption d-none d-md-block">
                 </div>
               </div>

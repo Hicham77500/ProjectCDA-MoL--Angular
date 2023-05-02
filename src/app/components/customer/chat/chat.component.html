@@ -1,96 +1,113 @@
-<main class="content">
-    <div class="container p-0">
-
-        <div class="card">
-            <div class="row g-0">
-                <div class="col-12 col-lg-5 col-xl-3 border-right">
-
-                    <div class="px-4 d-none d-md-block">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <input type="text" class="form-control my-3" placeholder="Recherche...">
-                            </div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
                         </div>
+                        <input type="text" class="form-control" placeholder="Search...">
                     </div>
-                    <div *ngFor="let user of listUsers">
-                        <form #chatForm="ngForm" (ngSubmit)="createLoadChat(chatForm.value,user)">
-                            <input type="hidden" ngModel="{{userLoggedIn.uid}}" name="idUser">
-                            <input type="hidden" ngModel="{{user.uid}}" name="idOtherUser">
-                            <button type="submit" class="list-group-item list-group-item-action border-0">
-                                <div class="badge bg-success float-right" *ngIf="userLoggedIn.uid != user.uid">5</div>
-                                <div class="d-flex align-items-start" *ngIf="userLoggedIn.uid != user.uid">
-                                    <img src="{{urlPict+user.profileImageURL}}" class="rounded-circle mr-1"
-                                        alt="Vanessa Tucker" width="40" height="40">
-                                    <div class="flex-grow-1 ml-3">
-                                        {{user.username}}
-                                        <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
-                                    </div>
-                                </div>
-                            </button>
-                        </form>
-                        {{userLoggedIn.uid|json}}
-                    </div>
-
-                    <!-- <a href="#" class="list-group-item list-group-item-action border-0">
-                            <div class="d-flex align-items-start">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                                    class="rounded-circle mr-1" alt="Jennifer Chang" width="40" height="40">
-                                <div class="flex-grow-1 ml-3">
-                                    Jennifer Chang
-                                    <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                                </div>
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Vincent Porter</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>                                            
                             </div>
-                        </a> -->
-                    <hr class="d-block d-lg-none mt-1 mb-0">
+                        </li>
+                        <li class="clearfix active">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Aiden Chavez</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Mike Thomas</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>                                    
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Christian Kelly</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Monica Ward</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Dean Henry</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-12 col-lg-7 col-xl-9">
-
-
-                    <div class="position-relative">
-                        <div class="chat-messages p-4" *ngFor="let message of chatSelected">
-
-                            <div class="chat-message-right pb-4" *ngIf="message.idUser == userLoggedIn.uid">
-                                <div>
-                                    <img src="{{userLoggedIn.profileImageURL}}"
-                                        class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">{{message.dateTime|date}}</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                    <div class="font-weight-bold mb-1">{{userLoggedIn.username}}</div>
-                                   {{message.content}}
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">Aiden Chavez</h6>
+                                    <small>Last seen: 2 hours ago</small>
                                 </div>
                             </div>
-
-                            <div class="chat-message-left pb-4" *ngIf="message.idUser != userLoggedIn.uid">
-                                <div>
-                                    <img src="{{userSelected.profileImageUrl}}"
-                                        class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">{{message.dateTime|date}}</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                    <div class="font-weight-bold mb-1">{{userSelected.username}}</div>
-                                    {{message.content}}
-                                </div>
+                            <div class="col-lg-6 hidden-sm text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
                             </div>
-
-
                         </div>
                     </div>
-
-                    <div class="flex-grow-0 py-3 px-4 border-top">
-                        <div class="input-group">
-                            <form #sendMessageForm="ngForm" (ngSubmit)="sendMessage(sendMessageForm.value)">
-                                <input type="hidden" ngModel="{{userLoggedIn.uid}}" name="idUser">
-                                <input type="hidden" ngModel="{{chatSelected.idChat}}" name="idChat">
-                                <input type="hidden" ngModel="{{userSelected.uid}}" name="idOtherUser">
-                            <input type="text" class="form-control" name="content" placeholder="Ecrivez un message">
-                            <button type="submit" class="btn btn-primary">Envoyer</button>
-                        </form>
+                    <div class="chat-history">
+                        <ul class="m-b-0">
+                            <li class="clearfix">
+                                <div class="message-data text-right">
+                                    <span class="message-data-time">10:10 AM, Today</span>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                </div>
+                                <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:12 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Are we meeting today?</div>                                    
+                            </li>                               
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:15 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter text here...">                                    
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</main>
+    </div>
+    
