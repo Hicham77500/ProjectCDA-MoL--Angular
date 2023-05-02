@@ -10,9 +10,6 @@ import { AuthenticationService } from 'src/app/services/admin/authentication/aut
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { TokenService } from 'src/app/services/admin/token/token.service';
 
-
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

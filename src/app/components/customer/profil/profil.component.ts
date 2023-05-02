@@ -128,7 +128,7 @@ export class ProfilComponent implements OnInit {
           (heart: any) => {
             this.getDataForModalPhoto(this.selectedPost.idPost);
 
-            this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+            
           },
           (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
         )
@@ -171,7 +171,7 @@ export class ProfilComponent implements OnInit {
       this.postCustomerService.getPost(idPost).subscribe(
         (data: any) => {
           this.selectedPost = data;
-          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+          
         },
         (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])
       )
@@ -201,7 +201,7 @@ export class ProfilComponent implements OnInit {
       this.commentCustomerService.addComment(comment).subscribe(
         (data: any) => {
           this.GetUserConnected();
-          this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été mise à jour avec succés")
+         
 
         },
         (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['hydra:description'])

@@ -20,6 +20,6 @@ export class ChatCustomerService {
   }
   public deleteChat(id: number | null) {
     console.log(id);
-    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/comments/" + id);
+    return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/chats/" + id);
   }
 }

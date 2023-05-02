@@ -21,9 +21,7 @@ declare var window: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-seeProfil(arg0: { "": any; }) {
-throw new Error('Method not implemented.');
-}
+
 
   formModal: any;
   declare id: number;

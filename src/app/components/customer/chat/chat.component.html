@@ -13,20 +13,25 @@
                         </div>
                     </div>
                     <div *ngFor="let user of listUsers">
-                        <a  class="list-group-item list-group-item-action border-0" (click)="chat(user.uid)">
-                            <div class="badge bg-success float-right">5</div>
-                            <div class="d-flex align-items-start">
-                                <img src="{{urlPict+user.profileImageURL}}"
-                                    class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-                                <div class="flex-grow-1 ml-3">
-                                    {{user.username}}
-                                    <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                        <form #chatForm="ngForm" (ngSubmit)="createLoadChat(chatForm.value,user)">
+                            <input type="hidden" ngModel="{{userLoggedIn.uid}}" name="idUser">
+                            <input type="hidden" ngModel="{{user.uid}}" name="idOtherUser">
+                            <button type="submit" class="list-group-item list-group-item-action border-0">
+                                <div class="badge bg-success float-right" *ngIf="userLoggedIn.uid != user.uid">5</div>
+                                <div class="d-flex align-items-start" *ngIf="userLoggedIn.uid != user.uid">
+                                    <img src="{{urlPict+user.profileImageURL}}" class="rounded-circle mr-1"
+                                        alt="Vanessa Tucker" width="40" height="40">
+                                    <div class="flex-grow-1 ml-3">
+                                        {{user.username}}
+                                        <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </button>
+                        </form>
+                        {{userLoggedIn.uid|json}}
                     </div>
 
-                        <!-- <a href="#" class="list-group-item list-group-item-action border-0">
+                    <!-- <a href="#" class="list-group-item list-group-item-action border-0">
                             <div class="d-flex align-items-start">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
                                     class="rounded-circle mr-1" alt="Jennifer Chang" width="40" height="40">
@@ -42,29 +47,29 @@
 
 
                     <div class="position-relative">
-                        <div class="chat-messages p-4" >
+                        <div class="chat-messages p-4" *ngFor="let message of chatSelected">
 
-                            <div class="chat-message-right pb-4" ng>
+                            <div class="chat-message-right pb-4" *ngIf="message.idUser == userLoggedIn.uid">
                                 <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                    <img src="{{userLoggedIn.profileImageURL}}"
                                         class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                    <div class="text-muted small text-nowrap mt-2">{{message.dateTime|date}}</div>
                                 </div>
                                 <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+                                    <div class="font-weight-bold mb-1">{{userLoggedIn.username}}</div>
+                                   {{message.content}}
                                 </div>
                             </div>
 
-                            <div class="chat-message-left pb-4">
+                            <div class="chat-message-left pb-4" *ngIf="message.idUser != userLoggedIn.uid">
                                 <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                    <img src="{{userSelected.profileImageUrl}}"
                                         class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:34 am</div>
+                                    <div class="text-muted small text-nowrap mt-2">{{message.dateTime|date}}</div>
                                 </div>
                                 <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
+                                    <div class="font-weight-bold mb-1">{{userSelected.username}}</div>
+                                    {{message.content}}
                                 </div>
                             </div>
 
@@ -74,8 +79,13 @@
 
                     <div class="flex-grow-0 py-3 px-4 border-top">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Ecrivez un message">
-                            <button class="btn btn-primary">Envoyer</button>
+                            <form #sendMessageForm="ngForm" (ngSubmit)="sendMessage(sendMessageForm.value)">
+                                <input type="hidden" ngModel="{{userLoggedIn.uid}}" name="idUser">
+                                <input type="hidden" ngModel="{{chatSelected.idChat}}" name="idChat">
+                                <input type="hidden" ngModel="{{userSelected.uid}}" name="idOtherUser">
+                            <input type="text" class="form-control" name="content" placeholder="Ecrivez un message">
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </form>
                         </div>
                     </div>
 

@@ -57,7 +57,7 @@ export class AuthenticationService {
     const token = localStorage.getItem('token');
     const isExpired = localStorage.getItem('isExpired')
     if(!token || !isExpired){
-    
+      this.router.navigateByUrl("/login")
       return false;
     }
     return true;
@@ -68,7 +68,7 @@ export class AuthenticationService {
     const isExpired = localStorage.getItem('isExpired')
     const admin = localStorage.getItem('role')
     if(!token || !isExpired || !admin){
- 
+      this.router.navigateByUrl("/login")
       return false;
     }
     return true;

@@ -39,23 +39,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of posts" >
-                <th scope="row"> {{item.idPost}}</th>
-                <td scope="row">{{item.idUser}}</td>
-                <td scope="row" *ngIf="item.listPictures[0]"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
-                  src="{{urlPict+item.listPictures[0].urlPicture}}" alt=""></td>
-            
-            
-                
-
-                <td scope="row">{{item.date|date }}</td>
+            <tr *ngFor="let post of posts" >
+                <th scope="row"> {{post.idPost}}</th>
+                <td scope="row">{{post.idUser}}</td>
+                <td scope="row" ><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+                  src="{{urlPict+post.postImageUrl}}" alt=""></td>
+                <td scope="row">{{post.date|date }}</td>
 
                 <td>
                   <div class="btn-group">
-                    <!-- <button class="btn btn-outline-info" (click)="onEditUser(appUser)">
-                      <i class="fas fa-edit"></i>
-                    </button> -->
-                    <button class="btn btn-outline-danger" (click)="onDeletePost(item.idPost)">
+                    <a routerLink="/admin/editPost/{{post.idPost}}"
+                    class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
+                  </a>
+                    <button class="btn btn-outline-danger" (click)="onDeletePost(post.idPost)">
                       <i class="fas fa-trash"></i>
                     </button>
                   </div>

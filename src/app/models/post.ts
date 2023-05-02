@@ -5,6 +5,7 @@ export class Post {
     public date: Date;
     public username: string;
     public profileImageURL: string;
+    public postImageUrl: string;
     public listPictures: string[];
     public listComments: string[];
     public listHearts: string[];
@@ -16,6 +17,7 @@ export class Post {
         this.description = '';
         this.username = '';
         this.profileImageURL = '';
+        this.postImageUrl = '';
         this.date = new Date();
         this.listPictures = [];
         this.listComments = [];

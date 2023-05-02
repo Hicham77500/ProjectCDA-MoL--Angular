@@ -30,4 +30,8 @@ export class PostCustomerService {
     console.log(id);
     return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/posts/" + id);
   }
+  updatePostImage(formData: FormData) {
+    console.log(formData)
+    return this.http.post<Post | HttpErrorResponse>(AppSettings.APP_URL + '/updatePostImage', formData)
+  }
 }

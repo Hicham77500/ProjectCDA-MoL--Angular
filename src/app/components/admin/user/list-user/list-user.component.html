@@ -41,23 +41,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of users">
-        <th scope="row"> {{item.uid}}</th>
+      <tr *ngFor="let user of users">
+        <th scope="row"> {{user.uid}}</th>
         <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
-            src="{{urlPict+item.profileImageURL}}" alt=""></td>
-        <td scope="row">{{item.email}}</td>
-        <td scope="row">{{item.genre}}</td>
-        <td scope="row">{{item.username}}</td>
-        <td scope="row">{{item.completeName}}</td>
-        <td scope="row">{{item.age|date }}</td>
+            src="{{urlPict+user.profileImageURL}}" alt=""></td>
+        <td scope="row">{{user.email}}</td>
+        <td scope="row">{{user.genre}}</td>
+        <td scope="row">{{user.username}}</td>
+        <td scope="row">{{user.completeName}}</td>
+        <td scope="row">{{user.age|date }}</td>
 
         <td>
           <div class="btn-group">
-            <a routerLink="/admin/editUser/{{item.uid}}"
+            <a routerLink="/admin/editUser/{{user.uid}}"
               class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
             </a>
 
-            <button class="btn btn-danger" (click)="onDeleteUser(item.uid)">
+            <button class="btn btn-danger" (click)="onDeleteUser(user.uid)">
               <i class="fas fa-trash"></i>
             </button>
           </div>

@@ -21,7 +21,7 @@ export class PostService {
 
   }
   public getPost(id: number) {
-    return this.http.get<Post>(AppSettings.APP_URL + "/admin/getPost/" + id);
+    return this.http.get<Post>(AppSettings.APP_URL + "/admin/posts/" + id);
   }
   public addPost(post: Post) { 
     
@@ -34,6 +34,11 @@ export class PostService {
     console.log(id);
     return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/admin/posts/" + id);
   }
+  updatePostImage(formData: FormData) {
+    console.log(formData)
+    return this.http.post<Post | HttpErrorResponse>(AppSettings.APP_URL + '/admin/updatePostImage', formData)
+  }
+
   public addPostsToLocalCache(posts: Post[]) : void {
     localStorage.setItem('posts', JSON.stringify(posts));
   }

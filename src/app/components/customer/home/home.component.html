@@ -4,11 +4,9 @@
 
   <div class="row">
     <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
-      <a (click)="openModal(post)" (click)="closeComment()"><img *ngIf="post.idPost % 2 == 0" src="{{urlPict+post.listPictures[0].urlPicture}}"
+      <a (click)="openModal(post)" (click)="closeComment()"><img  src="{{urlPict+post.postImageUrl}}"
           class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-
-      <img *ngIf="post.idPost % 2 != 0" src="{{urlPict+post.listPictures[0].urlPicture}}"
-        class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" /></a>
+</a>
     </div>
 
 
@@ -34,7 +32,7 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active" data-bs-interval="10000">
-                <img src="{{urlPict+selectedPost?.listPictures[0].urlPicture}}" class="d-block w-100" alt="...">
+                <img src="{{urlPict+selectedPost?.postImageUrl}}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                 </div>
               </div>

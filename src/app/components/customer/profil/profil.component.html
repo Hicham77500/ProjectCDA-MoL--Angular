@@ -53,14 +53,7 @@
 
                                     {{userLoggedIn.listPost.length}} Publications
                                 </h6>
-                                <h6 class="d-block">
-
-                                    7 Followers
-                                </h6>
-                                <h6 class="d-block">
-
-                                    8 Suivi(e)
-                                </h6>
+                               
 
                             </div>
 
@@ -90,7 +83,7 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 mb-4 mb-lg-0" *ngFor="let post of posts">
                                         <a (click)="openModalPhoto(post.idPost)" (click)="closeComment()"><img
-                                                src="{{urlPict+post.listPictures[0].urlPicture}}"
+                                                src="{{urlPict+post.postImageUrl}}"
                                                 class="w-100 shadow-1-strong rounded mb-4"
                                                 alt="Boat on Calm Water" /></a>
 
@@ -273,7 +266,7 @@
                                             </div>
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active" data-bs-interval="10000">
-                                                    <img src="{{urlPict+selectedPost?.listPictures[0].urlPicture}}"
+                                                    <img src="{{urlPict+selectedPost?.postImageUrl}}"
                                                         class="d-block w-100" alt="...">
                                                     <div class="carousel-caption d-none d-md-block">
                                                     </div>

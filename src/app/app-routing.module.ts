@@ -39,23 +39,28 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate:[authGuardFn]
       },
       {
         path: 'publish',
-        component: PublishComponent
+        component: PublishComponent,
+        canActivate:[authGuardFn]
       },
       {
         path: 'chat',
-        component: ChatComponent
+        component: ChatComponent,
+        canActivate:[authGuardFn]
       },
       {
         path: 'myProfil',
-        component: ProfilComponent
+        component: ProfilComponent,
+        canActivate:[authGuardFn]
       },
       {
         path: 'profil/:username',
-        component: ProfilVisitComponent
+        component: ProfilVisitComponent,
+        canActivate:[authGuardFn]
       }
     ]
   },

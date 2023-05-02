@@ -17,21 +17,21 @@ import { AppSettings } from 'src/app/settings/app.settings';
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements OnInit {
+  declare id: number;
+
+  declare userLoggedIn: User;
   urlPict = AppSettings.IMG_PROFIL;
   declare users: any;
   declare public refreshing: boolean;
   private subscription: Subscription[] = [];
   constructor(
-    private authenticationService: AuthenticationService,
     private userService: UserService,
-    private router: Router,
-    private route: ActivatedRoute,
     private notificationService: NotificationService
   ) {
 
   }
   ngOnInit(): void {
-
+    this.GetUserConnected();
     this.getUsers();
     
 
@@ -56,6 +56,19 @@ export class ListUserComponent implements OnInit {
       )
 
     );
+  }
+  public GetUserConnected() {
+
+    this.id = localStorage.getItem('userLoggedIn') as any;
+    console.log(this.id)
+    this.subscription.push(
+
+      this.userService.getUser(this.id).subscribe(
+        (data: any) => {
+          this.userLoggedIn = data;
+        }
+      )
+    )
   }
 
   onDeleteUser(id: number) {

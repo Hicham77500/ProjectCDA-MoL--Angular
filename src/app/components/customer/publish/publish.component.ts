@@ -10,6 +10,7 @@ import { PictureCustomerService } from 'src/app/services/customer/picture-custom
 import { PostCustomerService } from 'src/app/services/customer/post-customer/post-customer.service';
 import { UserCustomerService } from 'src/app/services/customer/user-customer/user-customer.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { AppSettings } from 'src/app/settings/app.settings';
 
 @Component({
   selector: 'app-publish',
@@ -17,6 +18,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./publish.component.css']
 })
 export class PublishComponent implements OnInit{
+  urlPict = AppSettings.IMG_PROFIL;
   declare public fileName: string;
   declare public pictureFile: File;
   declare userLoggedIn: User;
@@ -28,10 +30,7 @@ export class PublishComponent implements OnInit{
   constructor(
     private userCustomerService: UserCustomerService,
     private postCustomerService: PostCustomerService,
-    private commentCustomerService: CommentCustomerService,
-    private pictureCustomerService: PictureCustomerService,
     private router: Router,
-    private route: ActivatedRoute,
     private notificationService: NotificationService
   ) {
   }
@@ -41,12 +40,24 @@ export class PublishComponent implements OnInit{
   public onAddPost(post: Post) {
 
     this.postCustomerService.addPost(post).subscribe(
-      (data: any) => {this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été créé avec succès")
-      const formData = new FormData();
-      formData.append('idPost', data.idPost.toString());
-      formData.append('pictureFile', this.pictureFile);
-      this.pictureCustomerService.addPicture(formData).subscribe();
-      this.router.navigateByUrl('/home');}
+      (data: any) => {
+        this.notificationService.notify(NotificationType.SUCCESS, "Votre compte a été créé avec succès")
+        const formData = new FormData();
+        formData.append('idPost', data.idPost.toString());
+        formData.append('postImageUrl', this.pictureFile);
+        this.subscription.push(
+          this.postCustomerService.updatePostImage(formData).subscribe(
+            (data: any) => {
+
+
+            }
+          )
+        )
+
+
+
+        this.router.navigateByUrl('/admin/listPost');
+      }
       ,
 
       (err: HttpErrorResponse) => this.notificationService.notify(NotificationType.ERROR, err.error['message'])
@@ -54,15 +65,11 @@ export class PublishComponent implements OnInit{
 
 
   }
-  public onProfileImageChange(event:any):void{
-
-    
-    const files : File[] = event.target.files;
-    let file: File = event.target.files[event.target.files.length-1] as File;
-
+  public onPostImageAdd(event: any): void {
+    const files: File[] = event.target.files;
+    let file: File = event.target.files[event.target.files.length - 1] as File;
     this.fileName = file.name;
     this.pictureFile = file;
-    console.log(this.fileName);
 
   }
   public GetUserConnected() {

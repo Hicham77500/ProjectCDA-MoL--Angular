@@ -64,7 +64,7 @@ export class ListPostComponent implements OnInit {
     this.subscription.push(
       this.postService.deletePost(id).subscribe(
         (data: CustomHttpResponse) => {
-          this.notificationService.notify(NotificationType.SUCCESS, `L'utilisateur a bien été supprimé avec succes`);
+          this.notificationService.notify(NotificationType.SUCCESS, `Le post a bien été supprimé avec succes`);
           this.getPosts();
         },
         (errorResponse: HttpErrorResponse) => {
@@ -72,7 +72,7 @@ export class ListPostComponent implements OnInit {
         }
       )
     )
-  } 
+  }
   public searchPosts(searchTerm: string): void {
     const results: Post[] = [];
     for (const post of this.postService.getPostsFromLocalCache()) {
