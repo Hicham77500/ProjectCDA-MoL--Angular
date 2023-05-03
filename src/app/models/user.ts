@@ -1,3 +1,4 @@
+import { Chat } from "./chat";
 import { Post } from "./post";
 
 export class User {
@@ -15,6 +16,7 @@ export class User {
     public profileImageURL: string;
     public biography:string;
     public listPost: Post[];
+    public listChat: Chat[];
 
     constructor(
         ) {
@@ -31,6 +33,6 @@ export class User {
         this.role = '';  
         this.age = new Date();  
         this.listPost = [];
-    
+        this.listChat = [];
     }
 }

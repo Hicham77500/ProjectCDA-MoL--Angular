@@ -2,13 +2,8 @@
   <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group me-2" role="group" aria-label="First group">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          trier
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-        </ul>
+        
+       
       </div>
 
     </div>
@@ -100,7 +95,10 @@
               {{selectedPost?.description}}
             </p>
             <div class="small d-flex justify-content-start">
-              <a  class="d-flex align-items-center me-3">
+              <a  class="d-flex align-items-center me-3" *ngIf="isThisPostLikedByUserLoggedIn" (click)="unlike()">
+                <i class="far fa-heart fa-lg"></i>
+              </a>
+              <a  class="d-flex align-items-center me-3" *ngIf="!isThisPostLikedByUserLoggedIn" (click)="like(selectedPost.idPost,userLoggedIn.uid)">
                 <i class="far fa-heart fa-lg"></i>
               </a>
               <a  class="d-flex align-items-center me-3" (click)="openAndCloseComment()">
@@ -133,8 +131,6 @@
                     <button (click)="DeleteComment(comment.idComment)"><i class="fas fa-trash fa-sm"></i></button>
                     
                   </p>
-                  {{comment.idUser|json}}
-                  {{userLoggedIn.uid|json}}
                 </div>
                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
                   <form #CommentForm="ngForm" (ngSubmit)="onComment(CommentForm.value)">

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { Chat } from 'src/app/models/chat';
+import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
 import { ChatCustomerService } from 'src/app/services/customer/chat-customer/chat-customer.service';
 import { MessageCustomerService } from 'src/app/services/customer/message-customer/message-customer.service';
@@ -17,54 +18,56 @@ import { AppSettings } from 'src/app/settings/app.settings';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  sendMessage(message: any) {
-    this.messageCustomerService.addMessage(message).subscribe(
-      (data: any) => console.log(data)
-    )
-  }
-  public createLoadChat(form: Chat, user: User) {
-    console.log(form)
-    this.userSelected = user;
-    let result = false;
-    if (this.listOfChats) {
-      this.listOfChats.forEach((chat: any) => {
-        if (chat.idUser == form.idOtherUser) {
-          this.chatSelected = chat;
-          result = true;
-        }
-      })
-    }
+  
 
-    if (result == false) {
-      this.chatCustomerService.addChat(form).subscribe(
-        (data: any) => console.log(data)
-      )
-    }
-
-    ;
-  }
   declare userSelected: any;
+  declare messageChatSelected: any;
   declare chatSelected: any;
   urlPict = AppSettings.IMG_PROFIL;
   declare listUsers: User[];
   declare listOfChats: any;
+  declare listOfUsernamerFromListOfChats: any;
   declare userLoggedIn: User;
   declare id: number;
   private subscription: Subscription[] = [];
+
   ngOnInit(): void {
     this.GetUserConnected();
-    this.getUsers();
+
   }
   constructor(
     private userCustomerService: UserCustomerService,
-    private chatCustomerService: ChatCustomerService,
-
     private messageCustomerService: MessageCustomerService,
-
-    private router: Router,
-    private route: ActivatedRoute,
-    private notificationService: NotificationService
   ) {
+  }
+  OpenChat(chat: Chat) {
+    this.userCustomerService.getUser(chat.idOtherUser).subscribe(
+      (user: User) => {
+        this.userSelected = user;
+        console.log(user);
+
+      }
+    )
+    this.chatSelected = chat;
+    this.messageChatSelected = chat.listMessages;
+    console.log(this.chatSelected);
+    console.log(this.messageChatSelected);
+
+  }
+  
+  onAddMessage(message: Message) {
+    console.log(message);
+    console.log(this.chatSelected)
+    
+    this.subscription.push(
+      this.messageCustomerService.addMessage(message).subscribe(
+        (data : any) => {
+
+          this.messageChatSelected.push(data);
+          
+        }
+      )
+    )
   }
   public GetUserConnected() {
     this.id = localStorage.getItem('userLoggedIn') as any;
@@ -73,31 +76,11 @@ export class ChatComponent implements OnInit {
       this.userCustomerService.getUser(this.id).subscribe(
         (data: any) => {
           this.userLoggedIn = data;
+          this.listOfChats = data.listChat;
+
         }
       )
     )
   }
-  public getUsers() {
 
-    this.subscription.push(
-      this.userCustomerService.getUsers().subscribe(
-        (data: any) => {
-
-          console.log(data);
-          this.listUsers = data;
-          this.listOfChats = data.listChat;
-          console.log(this.listOfChats);
-
-          // this.notificationService.notify(NotificationType.SUCCESS, `${data.length} Utilisateur(s) chargé(s) avec succès`)
-        },
-        (err: HttpErrorResponse) => {
-
-          this.notificationService.notify(NotificationType.ERROR, err.error['messsage'])
-
-        }
-
-      )
-
-    );
-  }
 }

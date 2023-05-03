@@ -18,7 +18,7 @@ export class CommentCustomerService {
   public editComment(id: number, comment: Comment) {
     return this.http.put<Comment | HttpErrorResponse>(AppSettings.APP_URL + "/comments/" + id, comment);
   }
-  public deleteComment(id: number | null) {
+  public deleteComment(id: number) {
     console.log(id);
     return this.http.delete<CustomHttpResponse>(AppSettings.APP_URL + "/comments/" + id);
   }
