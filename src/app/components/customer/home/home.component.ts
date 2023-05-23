@@ -55,7 +55,8 @@ export class HomeComponent implements OnInit {
   unlike() {
     this.subscription.push(
       this.heartCustomerService.deleteHeart(this.idLike).subscribe(
-        () => {this.isThisPostLikedByUserLoggedIn = false
+        () => {
+          this.isThisPostLikedByUserLoggedIn = false
         this.isPostLikedByUserLoggedIn()}
       )
     )
@@ -81,7 +82,7 @@ export class HomeComponent implements OnInit {
       if (this.selectedPost.listHearts[index].idUser == this.userLoggedIn.uid) {
         result = true;
         this.idLike = this.selectedPost.listHearts[index].idHeart
-
+        
       }
 
     }
@@ -101,14 +102,10 @@ export class HomeComponent implements OnInit {
     )
   }
   DeleteComment(id: number) {
-    this.commentCustomerService.deleteComment(id).subscribe(
-      () => console.log("cesst bobnbnbnbbnobn")
-
-    )
+    this.commentCustomerService.deleteComment(id).subscribe()
   }
   openAndCloseComment() {
     const comment = document.getElementById('comment');
-    console.log(comment?.classList)
     if (comment?.classList.contains("d-none")) {
 
       comment?.classList.remove('d-none');
@@ -121,7 +118,6 @@ export class HomeComponent implements OnInit {
   }
   closeComment() {
     const comment = document.getElementById('comment');
-    console.log(comment?.classList)
     if (!comment?.classList.contains("d-none")) {
       comment?.classList.add('d-none');
 
@@ -156,7 +152,6 @@ export class HomeComponent implements OnInit {
   }
 
   onComment(comment: any) {
-    console.log(comment)
     this.subscription.push(
       this.commentCustomerService.addComment(comment).subscribe(
         (data: any) => {

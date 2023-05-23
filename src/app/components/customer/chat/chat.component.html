@@ -5,15 +5,24 @@
                 <div id="plist" class="people-list">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <form #searchForm="ngForm" (ngSubmit)="onSearch(searchForm.value)">
+                            <button class="btn btn-outline-dark" id="btnGroupAddon" type="submit">@</button>
+                                <input class="form-control" list="datalistOptions" ngModel name="username"
+                                    id="exampleDataList" placeholder="Type to search...">
+
+                                <datalist id="datalistOptions">
+                                    <option value="{{user.username}}"  *ngFor="let user of users">
+
+                                </datalist>
+
+                            </form>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search...">
                     </div>
                     <ul class="list-unstyled chat-list mt-2 mb-0" *ngFor="let chat of listOfChats">
                         <li class="clearfix" (click)="OpenChat(chat)">
                             <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
                             <div class="about">
-                                <div class="name">{{chat.idOtherUser}}</div>
+                                <div class="name" onload="loadUsername()"></div>
 
                             </div>
                         </li>
@@ -63,8 +72,9 @@
                                 <input type="text" [hidden]="true" name="idChat" ngModel="{{chatSelected.idChat}}">
                                 <div class="flex border-top">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="" ngModel name="content" placeholder="Type your message">
-                                        <button class="btn btn-primary">Envoyer</button>
+                                        <input type="text" class="form-control" id="" ngModel name="content"
+                                            placeholder="Type your message">
+                                        <button class="btn btn-primary" type="submit">Envoyer</button>
                                     </div>
                                 </div>
 

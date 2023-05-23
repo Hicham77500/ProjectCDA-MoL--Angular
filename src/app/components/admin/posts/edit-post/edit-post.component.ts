@@ -38,7 +38,6 @@ export class EditPostComponent implements OnInit{
     this.postService.getPost(id).subscribe({
       next: (data: Post) => {
         this.editPost = data;
-        console.log(data)
       },
       complete: () => console.log('ok')
 
@@ -71,7 +70,7 @@ export class EditPostComponent implements OnInit{
     this.subscription.push(
     this.postService.updatePostImage(formData).subscribe(
       (data: any) => {
-        console.log(data);
+  
         
         
       }

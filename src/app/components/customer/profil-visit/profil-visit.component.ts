@@ -47,7 +47,7 @@ this.commentCustomerService.deleteComment(id).subscribe(
   ngOnInit(): void {
     const username = String(this.route.snapshot.paramMap.get('username'));
     this.getDataForProfile(username);
-    console.log(username)
+
     this.GetUserConnected();
   }
   constructor(
@@ -68,12 +68,9 @@ this.commentCustomerService.deleteComment(id).subscribe(
     
     this.subscription.push(
     this.userCustomerService.getUserByUsername(username).subscribe(
-      (data: User) => {
-        console.log(data);
-        
+      (data: User) => { 
         this.actualProfil = data;
         this.posts = data.listPost;
-        console.log(this.actualProfil)
       }
     )
     )  
@@ -153,7 +150,6 @@ this.commentCustomerService.deleteComment(id).subscribe(
   
   //ajouter un commentaire
   onComment(comment: any) {
-    console.log(comment)
     this.subscription.push(
       this.commentCustomerService.addComment(comment).subscribe(
         (data: any) => {

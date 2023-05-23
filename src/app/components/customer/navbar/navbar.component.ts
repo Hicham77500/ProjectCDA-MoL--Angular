@@ -43,7 +43,6 @@ onSearch(username: string) {
   public GetUserConnected() {
 
     this.id = localStorage.getItem('userLoggedIn') as any;
-    console.log(this.id)
     this.subscription.push(
 
       this.userCustomerService.getUser(this.id).subscribe(
@@ -60,7 +59,6 @@ onSearch(username: string) {
         (data: any) => {
          
           this.users = data;
-          
         
           
         },

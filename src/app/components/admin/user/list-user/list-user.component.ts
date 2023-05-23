@@ -1,14 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { CustomHttpResponse } from 'src/app/interfaces/custom-http-response';
 import { User } from 'src/app/models/user';
-import { AuthenticationService } from 'src/app/services/admin/authentication/authentication.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/admin/user/user.service';
-
 import { AppSettings } from 'src/app/settings/app.settings';
 
 @Component({
@@ -18,7 +15,6 @@ import { AppSettings } from 'src/app/settings/app.settings';
 })
 export class ListUserComponent implements OnInit {
   declare id: number;
-
   declare userLoggedIn: User;
   urlPict = AppSettings.IMG_PROFIL;
   declare users: any;
@@ -43,7 +39,6 @@ export class ListUserComponent implements OnInit {
         (data: any) => {
           this.userService.addUsersToLocalCache(data);
           this.users = data;
-          console.log(data)
           this.refreshing = false;
           this.notificationService.notify(NotificationType.SUCCESS, `${data.length} Utilisateur(s) chargé(s) avec succès`)
         },
@@ -60,7 +55,6 @@ export class ListUserComponent implements OnInit {
   public GetUserConnected() {
 
     this.id = localStorage.getItem('userLoggedIn') as any;
-    console.log(this.id)
     this.subscription.push(
 
       this.userService.getUser(this.id).subscribe(

@@ -18,8 +18,16 @@ import { AppSettings } from 'src/app/settings/app.settings';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+onSearch(username: string) {
+  let test = Object.values(username)
+this.userCustomerService.getUserByUsername(username).subscribe(
+  (data : any) => {
+    console.log(data)
+  }
+)
+}
   
-
+  declare users : any;
   declare userSelected: any;
   declare messageChatSelected: any;
   declare chatSelected: any;
@@ -33,31 +41,33 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserConnected();
-
+    this.getUsers();
   }
   constructor(
     private userCustomerService: UserCustomerService,
     private messageCustomerService: MessageCustomerService,
+    private notificationService : NotificationService
   ) {
   }
   OpenChat(chat: Chat) {
+    console.log(chat);
+    
     this.userCustomerService.getUser(chat.idOtherUser).subscribe(
       (user: User) => {
-        this.userSelected = user;
         console.log(user);
+        
+        this.userSelected = user;
 
       }
     )
     this.chatSelected = chat;
     this.messageChatSelected = chat.listMessages;
-    console.log(this.chatSelected);
-    console.log(this.messageChatSelected);
+
 
   }
   
   onAddMessage(message: Message) {
     console.log(message);
-    console.log(this.chatSelected)
     
     this.subscription.push(
       this.messageCustomerService.addMessage(message).subscribe(
@@ -71,7 +81,6 @@ export class ChatComponent implements OnInit {
   }
   public GetUserConnected() {
     this.id = localStorage.getItem('userLoggedIn') as any;
-    console.log(this.id)
     this.subscription.push(
       this.userCustomerService.getUser(this.id).subscribe(
         (data: any) => {
@@ -82,5 +91,24 @@ export class ChatComponent implements OnInit {
       )
     )
   }
+  public getUsers() {
 
+    this.subscription.push(
+      this.userCustomerService.getUsers().subscribe(
+        (users: any) => {
+          
+          this.users = users;
+          
+          
+        },
+        (err: HttpErrorResponse) => {
+          
+          this.notificationService.notify(NotificationType.ERROR, err.error['messsage'])
+
+        }
+
+      )
+
+    );
+  }
 }

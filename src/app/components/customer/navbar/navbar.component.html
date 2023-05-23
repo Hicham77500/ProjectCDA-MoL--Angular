@@ -36,12 +36,12 @@
 
       </ul>
       <form class="d-flex" >
-        <div class="input-group">
+        <div class="input-group" >
            <form #searchForm="ngForm" (ngSubmit)="onSearch(searchForm.value)" class="form-inline my-2 my-lg-0 justify-content-center">
 
           <input class="form-control" list="datalistOptions" ngModel name="username" id="exampleDataList" placeholder="Type to search...">
-          <datalist id="datalistOptions" *ngFor="let user of users">
-            <option value="{{user.username}}">
+          <datalist id="datalistOptions" >
+            <option value="{{user.username}}" *ngFor="let user of users">
            
           </datalist>
           <button class="btn btn-outline-dark" id="btnGroupAddon" type="submit" >@</button>
