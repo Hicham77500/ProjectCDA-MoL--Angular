@@ -28,12 +28,19 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Commandes et instructions a effectuer pour initialisation du projet
+
 npm install pour installer les packages
+
 PS : en cas de soucis avec le package.json (mise a jour des dependence qui échoue crée un nouveau projet a coter avec les caracteristique de celui ci donc Y pour routing , et selectionner CSS)
+
 npm install @auth0/angular-jwt
+
 npm install ts-md5
+
 npm install jquery
+
 npm install Bootstrap
+
 npm install angular-notifier
 
 Lancer ng serve ! 
