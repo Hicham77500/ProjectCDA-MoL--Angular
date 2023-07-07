@@ -16,7 +16,7 @@ import { AppSettings } from 'src/app/settings/app.settings';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  urlPict = AppSettings.IMG_PROFIL;
+  urlPict = AppSettings.APP_URL_IMG;
   public editUser = new User();
   declare public fileName: string;
   declare public pictureFile: File;

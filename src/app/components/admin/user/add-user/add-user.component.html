@@ -1,4 +1,3 @@
-
 <div class="container">
   <h2 class="text-center">Créer un nouvel Utilisateur</h2>
   <a href="/admin/listUser" class="btn btn-primary">Retour</a>
@@ -23,17 +22,22 @@
 
         </select>
       </div>
-      
-      <label for="floatingInput">Nom complet</label>
+      <label for="floatingInput">Nom</label>
       <div class="form-floating mb-3">
-        <input ngModel name="completeName" type="text" class="form-control" id="floatingInput" placeholder="nom" required />
+        <input ngModel name="lastName" type="text" class="form-control" id="floatingInput" placeholder="nom"
+          required />
+      </div>
+      <label for="floatingInput">Prénom</label>
+      <div class="form-floating mb-3">
+        <input ngModel name="firstName" type="text" class="form-control" id="floatingInput" placeholder="prénom"
+          required />
       </div>
       <label for="floatingInput">Identifiant</label>
       <div class="form-floating mb-3">
         <input ngModel name="username" type="text" class="form-control" id="floatingInput" placeholder="pseudo"
           required />
       </div>
-     
+
       <label for="floatingInput">Date de naissance</label>
       <div class="form-floating mb-3">
         <input ngModel name="age" type="date" class="form-control" id="floatingInput" placeholder="prenom" required />

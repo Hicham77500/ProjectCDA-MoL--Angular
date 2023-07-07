@@ -1,0 +1,20 @@
+<div class="container">
+    <h2 class="text-center">Modifier l'utilisateur : {{editCategory.name}}</h2>
+    <a href="/admin/listCategory" class="btn btn-primary">Retour</a>
+    <div class="border">
+     
+      <form #editCategoryForm="ngForm" (ngSubmit)="onEdit(editCategoryForm.value)">
+   
+        <label for="floatingInput">Nom</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editCategory.name" name="name" type="text" class="form-control" />
+        </div>
+        <label for="floatingInput">Prénom</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editCategory.description" name="description" type="text" class="form-control" />
+        </div>
+       
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>

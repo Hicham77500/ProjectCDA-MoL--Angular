@@ -1,0 +1,89 @@
+<div class="card">
+
+    <div class="card-header bg-black"></div>
+    <a routerLink="/admin/listOrders" class="btn btn-success">Retour aux commandes</a>
+    <div class="card-body">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <i class="far fa-building text-danger fa-6x float-start"></i>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <ul class="list-unstyled float-end">
+                        <li style="font-size: 30px; color: red;">Company</li>
+                        <li>123, Elm Street</li>
+                        <li>123-456-789</li>
+                        <li>mail@mail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <h3 class="text-uppercase text-center mt-3" style="font-size: 40px;">Facture</h3>
+                <p>{{selectedOrder.refOrder}}</p>
+            </div>
+
+            <div class="row mx-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Montant</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr *ngFor="let orderLine of orderLines">
+                                <td>{{orderLine.prodName}}</td>
+                                <td><i class="fas fa-dollar-sign"></i> {{orderLine.prodPrice}}</td>
+                                <td>{{orderLine.quantity}}</td>
+                                <td>{{orderLine.amount}}</td>
+                            </tr>
+                        </tbody>
+                    
+                </table>
+
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <ul class="list-unstyled float-end me-0">
+                        <li><span class="me-3 float-start">Montant Total:</span><i class="fas fa-dollar-sign"></i>
+                            {{selectedOrder.total}}
+                        </li>
+
+                        <li><span class="float-start" style="margin-right: 35px;">Livraison: </span><i
+                                class="fas fa-dollar-sign"></i> 20</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-xl-8" style="margin-left:60px">
+                    <p class="float-end"
+                        style="font-size: 30px; color: red; font-weight: 400;font-family: Arial, Helvetica, sans-serif;">
+                        Total:
+                        <span><i class="fas fa-dollar-sign"></i> {{selectedOrder.total + 20}} </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="row mt-2 mb-5">
+                <p class="fw-bold">Date: <span class="text-muted">{{selectedOrder.dateOrder|date}}</span></p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="card-footer bg-black"></div>
+</div>

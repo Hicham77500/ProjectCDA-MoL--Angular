@@ -16,7 +16,7 @@ import { AppSettings } from 'src/app/settings/app.settings';
 export class ListUserComponent implements OnInit {
   declare id: number;
   declare userLoggedIn: User;
-  urlPict = AppSettings.IMG_PROFIL;
+  urlPict =  AppSettings.APP_URL_IMG;
   declare users: any;
   declare public refreshing: boolean;
   private subscription: Subscription[] = [];
@@ -30,7 +30,8 @@ export class ListUserComponent implements OnInit {
     this.GetUserConnected();
     this.getUsers();
     
-
+    
+    
   }
   public getUsers() {
     this.refreshing = true;
@@ -40,6 +41,7 @@ export class ListUserComponent implements OnInit {
           this.userService.addUsersToLocalCache(data);
           this.users = data;
           this.refreshing = false;
+          console.log(this.users);
           this.notificationService.notify(NotificationType.SUCCESS, `${data.length} Utilisateur(s) chargé(s) avec succès`)
         },
         (err: HttpErrorResponse) => {
@@ -83,7 +85,9 @@ export class ListUserComponent implements OnInit {
   public searchUsers(searchTerm: string): void {
     const results: User[] = [];
     for (const user of this.userService.getUsersFromLocalCache()) {
-      if (user.completeName.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+      if (
+        user.lastName.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
+        user.firstName.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
         user.username.toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ||
         user.uid.toString().toLocaleLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
       ) {

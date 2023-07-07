@@ -6,22 +6,32 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/admin/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { AddPostComponent } from './components/admin/posts/add-post/add-post.component';
-import { EditPostComponent } from './components/admin/posts/edit-post/edit-post.component';
-import { ListPostComponent } from './components/admin/posts/list-post/list-post.component';
+
 import { RegisterComponent } from './components/admin/register/register.component';
 import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
 import { ListUserComponent } from './components/admin/user/list-user/list-user.component';
 import { HomeComponent } from './components/customer/home/home.component';
-import { NavbarComponent } from './components/customer/navbar/navbar.component';
-import { ProfilComponent } from './components/customer/profil/profil.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NotificationModule } from './services/notification/notification.module';
-import { PublishComponent } from './components/customer/publish/publish.component';
-import { ProfilVisitComponent } from './components/customer/profil-visit/profil-visit.component';
-import { ChatComponent } from './components/customer/chat/chat.component';
-import { FooterComponent } from './components/footer/footer.component';
+
+
+import { NavBarComponent } from './components/layout/nav-bar/nav-bar.component';
+import { AboutComponent } from './components/customer/about/about.component';
+import { CartComponent } from './components/customer/cart/cart.component';
+import { OrdersComponent } from './components/customer/orders/orders.component';
+import { ProfileComponent } from './components/customer/profile/profile.component';
+import { ViewProductComponent } from './components/customer/view-product/view-product.component';
+import { ListOrdersComponent } from './components/admin/orders/list-orders/list-orders.component';
+import { ShowOrderlineComponent } from './components/admin/orders/show-orderline/show-orderline.component';
+import { ShowDetailOrdersComponent } from './components/customer/orders/show-detail-orders/show-detail-orders.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { AddCategoryComponent } from './components/admin/category/add-category/add-category.component';
+import { ListCategoryComponent } from './components/admin/category/list-category/list-category.component';
+import { EditCategoryComponent } from './components/admin/category/edit-category/edit-category.component';
+import { AddProductComponent } from './components/admin/product/add-product/add-product.component';
+import { EditProductComponent } from './components/admin/product/edit-product/edit-product.component';
+import { ListProductComponent } from './components/admin/product/list-product/list-product.component';
 
 
 
@@ -32,27 +42,35 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-  
+
     AddUserComponent,
     EditUserComponent,
     ListUserComponent,
-    NavbarComponent,
     DashboardComponent,
     HomeComponent,
-    AddPostComponent,
-    EditPostComponent,
-    ListPostComponent,
-    ProfilComponent,
-    PublishComponent,
-    ProfilVisitComponent,
-    ChatComponent,
-    FooterComponent,
+    NavBarComponent,
+    AboutComponent,
+    CartComponent,
+    OrdersComponent,
+    ProfileComponent,
+    ViewProductComponent,
+    ListOrdersComponent,
+
+    ShowOrderlineComponent,
+     ShowDetailOrdersComponent,
+     FooterComponent,
+     AddCategoryComponent,
+     ListCategoryComponent,
+     EditCategoryComponent,
+     AddProductComponent,
+     EditProductComponent,
+     ListProductComponent,
 
 
 
   ],
   imports: [
-  
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

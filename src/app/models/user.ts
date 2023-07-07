@@ -1,22 +1,21 @@
-import { Chat } from "./chat";
-import { Post } from "./post";
-
 export class User {
     public uid: number;
+    public username: string;
     public email: string;
-    public plainPassword: string;
     public password: string;
     public genre: string;
-    public completeName: string;
-    
+    public lastName: string;
+    public firstName: string;
+    public adress: string;
+    public city: string;
     public age: Date;
+    public mobileNumber: string;
+    public biography:string;
+    public listOrders: [];
     public roles: string[];
     public role: string;
-    public username: string;
     public profileImageURL: string;
-    public biography:string;
-    public listPost: Post[];
-    public listChat: Chat[];
+
 
     constructor(
         ) {
@@ -24,15 +23,17 @@ export class User {
         this.biography='';
         this.email = '';
         this.profileImageURL = '';
-        this.plainPassword = '';
         this.password = '';
         this.genre = '';
         this.username = '';
-        this.completeName = '';       
+        this.lastName = '';  
+        this.firstName= '';     
+        this.adress= '';  
+        this.city= '';  
+        this.age = new Date();  
+        this.mobileNumber= '';  
+        this.listOrders = [];
         this.roles = [];
         this.role = '';  
-        this.age = new Date();  
-        this.listPost = [];
-        this.listChat = [];
     }
 }

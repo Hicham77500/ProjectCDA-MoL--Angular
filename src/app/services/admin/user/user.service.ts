@@ -8,10 +8,8 @@ import { AppSettings } from 'src/app/settings/app.settings';
   providedIn: 'root'
 })
 export class UserService {
- 
 
-
-
+  
   constructor(private http: HttpClient) {
 
   }
@@ -20,7 +18,7 @@ export class UserService {
 
   }
   public getUser(id: number) {
-    return this.http.get<User>(AppSettings.APP_URL + "/admin/getUser/" + id);
+    return this.http.get<User>(AppSettings.APP_URL + "/getUser/" + id);
   }
   public addUser(user: User) {
     console.log(user)

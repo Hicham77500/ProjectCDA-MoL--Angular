@@ -1,0 +1,72 @@
+<div class="container">
+    <h2 class="text-center">Votre Profil : {{editUser.username}}</h2>
+    <a href="/" class="btn btn-primary">Retour</a>
+    <div class="border">
+      <form #editUserProfileImageForm="ngForm" (ngSubmit)="onEdit(editUserProfileImageForm.value)">
+        <div class="input-group-mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><img src="{{urlPict+editUser.profileImageURL}}" alt="" srcset=""></span>
+          </div>
+          <div class="custom-file">
+            <input type="file" name="profileImage" (change)="onProfileImageChange($event,editUser.username)"
+              class="custom-file-input">
+            <label class="custom-file-label">
+              <span [hidden]="!fileName">{{fileName}}</span>
+              <span [hidden]="fileName">{{editUser.profileImageURL}}</span>
+            </label>
+          </div>
+        </div>
+      </form>
+      <form #editUserForm="ngForm" (ngSubmit)="onEdit(editUserForm.value)">
+        <div class="form-floating mb-3">
+          <select name="role" [(ngModel)]="editUser.role">
+            <option value="">{{editUser.role}}</option>
+            <option value="ROLE_SUPER_ADMIN">Admin</option>
+            <option value="ROLE_USER">Utilisateur</option>
+          </select>
+        </div>
+        <div class="form-floating mb-3">
+          <select name="genre" [(ngModel)]="editUser.genre">
+            <option value="">{{editUser.genre}}</option>
+            <option value="homme">Monsieur</option>
+            <option value="femme">Madame</option>
+          </select>
+        </div>
+        <label for="floatingInput">Date de naissance</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.age" name="age" type="date" class="form-control" id="floatingInput"
+            placeholder="prenom" required />
+        </div>
+  
+        <label for="floatingInput">Pseudo</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.username" name="username" type="text" class="form-control" />
+        </div>
+        <label for="floatingInput">Email</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.email" name="email" type="email" class="form-control" />
+        </div>
+        <label for="floatingInput">Nom</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.lastName" name="lastName" type="text" class="form-control" />
+        </div>
+        <label for="floatingInput">Prénom</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.firstName" name="firstName" type="text" class="form-control" />
+        </div>
+        <label for="floatingInput">Adresse</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.adress" name="adress" type="text" class="form-control" />
+        </div>
+        <label for="floatingInput">Ville</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.city" name="city" type="text" class="form-control" />
+        </div>
+        <label for="floatingInput">Téléphone</label>
+        <div class="form-floating mb-3">
+          <input [(ngModel)]="editUser.mobileNumber" name="mobileNumber" type="text" class="form-control" />
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>

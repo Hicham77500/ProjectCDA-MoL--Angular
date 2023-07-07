@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand" href="/">Eshop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Accueil</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="orders" *ngIf="userLoggedIn">Commandes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="profile" *ngIf="userLoggedIn">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="admin" *ngIf="userLoggedIn && userAdmin">Admin</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="about">A propos</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <button routerLink="/login" *ngIf="!userLoggedIn" class="btn btn-outline-dark" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="36" height="36"
+            viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+            <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+          </svg>
+          Connexion
+        </button>
+        <button routerLink="/login" (click)="logout()" *ngIf="userLoggedIn" class="btn btn-outline-dark" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-login" width="36" height="36"
+            viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+            <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+          </svg>
+          Deconnexion
+        </button>
+        <div class="space"></div>
+        <button routerLink="/register" *ngIf="!userLoggedIn" class="btn btn-outline-dark" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-floppy" width="36"
+            height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+            <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M14 4l0 4l-6 0l0 -4" />
+          </svg>
+          S'enregistrer
+        </button>
+        <div class="space"></div>
+        <button routerLink="/cart" class="btn btn-outline-dark" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus" width="36"
+            height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M17 17h-11v-14h-2" />
+            <path d="M6 5l6 .429m7.138 6.573l-.143 1h-13" />
+            <path d="M15 6h6m-3 -3v6" />
+          </svg>
+          Panier
+          <span class="badge bg-dark text-white ms-1 rounded-pill">{{cartTotalItems}}</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">Eshop</h1>
+      <p class="lead fw-normal text-white-50 mb-0">Découvrez l'avenir entre vos mains : notre site web vous offre les
+        dernières innovations high-tech pour révolutionner votre quotidien !</p>
+    </div>
+  </div>
+</header>
+<router-outlet></router-outlet>

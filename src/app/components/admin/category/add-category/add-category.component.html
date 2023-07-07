@@ -1,0 +1,21 @@
+<div class="container">
+    <h2 class="text-center">Créer un nouvel Utilisateur</h2>
+    <a href="/admin/listCategory" class="btn btn-primary">Retour</a>
+    <div class="border">
+        <form #addCategoryForm="ngForm" (ngSubmit)="onAddCategory(addCategoryForm.value)">
+
+            <label for="floatingInput">Nom</label>
+            <div class="form-floating mb-3">
+                <input ngModel name="name" type="text" class="form-control" id="floatingInput" placeholder="nom"
+                    required />
+            </div>
+            <label for="floatingInput">Description</label>
+            <div class="form-floating mb-3">
+                <input ngModel name="description" type="text" class="form-control" id="floatingInput" placeholder="prénom"
+                    required />
+
+                <button type="submit" [disabled]="addCategoryForm.invalid ">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</div>

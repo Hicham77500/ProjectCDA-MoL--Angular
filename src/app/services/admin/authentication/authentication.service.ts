@@ -14,7 +14,7 @@ import {Md5} from 'ts-md5';
 export class AuthenticationService {
   SaveUserId(id : number) {
    
-    let addCrypt = Md5.hashStr("test");
+
     localStorage.setItem('userLoggedIn', id.toString() );
     console.log(id)
   }
@@ -35,7 +35,9 @@ export class AuthenticationService {
 
   public logOut() {
  
-    localStorage.clear();
+    localStorage.removeItem('userLoggedIn');
+    localStorage.removeItem('token');
+    localStorage.removeItem('isExpired');
 
   }
   public validateToken(): boolean {
@@ -53,7 +55,7 @@ export class AuthenticationService {
     }
 
   }
-  isLoggedInAsUser(){
+  isLoggedInAsUser(){ 
     const token = localStorage.getItem('token');
     const isExpired = localStorage.getItem('isExpired')
     if(!token || !isExpired){
@@ -74,6 +76,4 @@ export class AuthenticationService {
     return true;
   }
   
-  
- 
 }

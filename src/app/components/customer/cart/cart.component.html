@@ -1,0 +1,224 @@
+<ng-container> 
+    <section class="h-100 h-custom" style="background-color: #eee">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="card">
+              <div class="card-body p-4">
+                <div class="row">
+                  <div class="col-lg-7">
+                    <h5 class="mb-3">
+                      <a routerLink="" class="text-body"
+                        ><i class="fas fa-long-arrow-alt-left me-2"></i>Continuer mes achats</a
+                      >
+                    </h5>
+                    <hr />
+    
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-4"
+                    >
+                      <div>
+                        <p class="mb-1">Panier</p>
+                        <p class="mb-0">Vous avez {{totalItemInCart}} objet(s) dans votre panier</p>
+                      </div>
+                      <div>
+                        <!-- <p class="mb-0">
+                          <span class="text-muted">Sort by:</span>
+                          <a href="#!" class="text-body"
+                            >price <i class="fas fa-angle-down mt-1"></i
+                          ></a>
+                        </p> -->
+                      </div>
+                    </div>
+    
+                    <div class="card mb-3" *ngFor="let item of cartItems">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                          <div class="d-flex flex-row align-items-center">
+                            <div>
+                              <img
+                                src={{urlImage+item.urlImage}}
+                                class="img-fluid rounded-3"
+                                alt="Shopping item"
+                                style="width: 65px"
+                              />
+                            </div>
+                            <div class="ms-3">
+                              <h5>{{item.product.name}}</h5>
+                              <p class="small mb-0">{{item.product.description}}</p>
+                            </div>
+                          </div>
+                          <div class="d-flex flex-row align-items-center">
+                            <div style="width: 50px">
+                              <h5 class="fw-normal mb-0"></h5>
+                            </div>
+                            <div style="width: 80px">
+                              <h5 class="mb-0">{{item.product.price}}€</h5>
+                            </div>
+                            <button (click)="decrease(item.product)">-1</button>
+                            <span>{{item.qty}}</span>
+                            <button (click)="increase(item.product)">+1</button>
+                            <button class="btn btn-danger" (click)="remove(item.product)">Supprimer</button>
+                            <a href="#!" style="color: #cecece"
+                              ><i class="fas fa-trash-alt"></i
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="card bg-primary text-white rounded-3">
+                      <div class="card-body">
+                        <div
+                          class="d-flex justify-content-between align-items-center mb-4"
+                        >
+                          <h5 class="mb-0">Details du paiement</h5>
+                          <img
+                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                            class="img-fluid rounded-3"
+                            style="width: 45px"
+                            alt="Avatar"
+                          />
+                        </div>
+    
+                        <p class="small mb-2">Type de carte de crédit</p>
+                        <a href="#!" type="submit" class="text-white"
+                          ><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-mastercard" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M14 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M12 9.765a3 3 0 1 0 0 4.47" />
+                            <path d="M3 5m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
+                          </svg></a>
+                        <a href="#!" type="submit" class="text-white"
+                          ><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-visa" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M21 15l-1 -6l-2.5 6" />
+                            <path d="M9 15l1 -6" />
+                            <path d="M3 9h1v6h.5l2.5 -6" />
+                            <path d="M16 9.5a.5 .5 0 0 0 -.5 -.5h-.75c-.721 0 -1.337 .521 -1.455 1.233l-.09 .534a1.059 1.059 0 0 0 1.045 1.233a1.059 1.059 0 0 1 1.045 1.233l-.09 .534a1.476 1.476 0 0 1 -1.455 1.233h-.75a.5 .5 0 0 1 -.5 -.5" />
+                            <path d="M18 14h2.7" />
+                          </svg></a>
+                        <a href="#!" type="submit" class="text-white"
+                          ><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-paypal" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M10 13l2.5 0c2.5 0 5 -2.5 5 -5c0 -3 -1.9 -5 -5 -5h-5.5c-.5 0 -1 .5 -1 1l-2 14c0 .5 .5 1 1 1h2.8l1.2 -5c.1 -.6 .4 -1 1 -1zm7.5 -5.8c1.7 1 2.5 2.8 2.5 4.8c0 2.5 -2.5 4.5 -5 4.5h-2.6l-.6 3.6a1 1 0 0 1 -1 .8l-2.7 0a.5 .5 0 0 1 -.5 -.6l.2 -1.4" />
+                          </svg></a>
+    
+                        <form class="mt-4">
+                          <div class="form-outline form-white mb-4">
+                            <input
+                              type="text"
+                              id="typeName"
+                              class="form-control form-control-lg"
+                              siez="17"
+                              placeholder="Nom du titulaire de la carte"
+                            />
+                            <label class="form-label" for="typeName"
+                              >Nom du titulaire de la carte</label
+                            >
+                          </div>
+    
+                          <div class="form-outline form-white mb-4">
+                            <input
+                              type="text"
+                              id="typeText1"
+                              class="form-control form-control-lg"
+                              siez="17"
+                              placeholder="1234 5678 9012 3457"
+                              minlength="19"
+                              maxlength="19"
+                            />
+                            <label class="form-label" for="typeText"
+                              >Numero de carte</label
+                            >
+                          </div>
+    
+                          <div class="row mb-4">
+                            <div class="col-md-6">
+                              <div class="form-outline form-white">
+                                <input
+                                  type="text"
+                                  id="typeExp"
+                                  class="form-control form-control-lg"
+                                  placeholder="MM/AAAA"
+                                  size="7"
+                                  id="exp"
+                                  minlength="7"
+                                  maxlength="7"
+                                />
+                                <label class="form-label" for="typeExp"
+                                  >Expiration</label
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-outline form-white">
+                                <input
+                                  type="password"
+                                  id="typeText"
+                                  class="form-control form-control-lg"
+                                  placeholder="&#9679;&#9679;&#9679;"
+                                  size="1"
+                                  minlength="3"
+                                  maxlength="3"
+                                />
+                                <label class="form-label" for="typeText">Cvv</label>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+    
+                        <hr class="my-4" />
+    
+                        <div class="d-flex justify-content-between">
+                          <p class="mb-2">Total</p>
+                          <p class="mb-2">{{totalAmount}}€</p>
+                        </div>
+    
+                        <div class="d-flex justify-content-between">
+                          <p class="mb-2">Expédition</p>
+                          <p class="mb-2">20.00€</p>
+                        </div>
+    
+                        <div class="d-flex justify-content-between mb-4">
+                          <p class="mb-2">Total(Incl. taxes)</p>
+                          <p class="mb-2">{{totalAmount+20}}€</p>
+                        </div>
+                        <button type="button" *ngIf="!isUserLogged" routerLink="/login" class="btn btn-info btn-block btn-lg">
+                          <div class="d-flex justify-content-end">
+                       
+                            <span
+                              >Connexion
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-zoom-check" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                <path d="M21 21l-6 -6" />
+                                <path d="M7 10l2 2l4 -4" />
+                              </svg></span>
+                          </div>
+                        </button>
+                        <button type="button" *ngIf="isUserLogged" (click)="onPayment()" class="btn btn-info btn-block btn-lg">
+                          <div class="d-flex justify-content-end">
+                            
+                            <span
+                              >Payer
+                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-zoom-check" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                <path d="M21 21l-6 -6" />
+                                <path d="M7 10l2 2l4 -4" />
+                              </svg></span>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </ng-container>

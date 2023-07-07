@@ -1,0 +1,69 @@
+<div class="container border">
+
+    <br>
+    <H1 class="text-center">Liste des produits</H1>
+    <div class="mb-3 float-left">
+      <a href="/admin/addproduct" class="btn btn-success" data-toggle="modal">
+        <i class="fa fa-plus">Ajouter un Produit</i>
+      </a>
+    </div>
+  
+    <div class="mb-3 float-right">
+      <div class="btn-group mr-2">
+  
+        <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
+          <!-- On appelle la fonction search  -->
+          <input name="searchTerm" class="form-control mr-sm-2" ngModel
+            (ngModelChange)="searchProducts(searchForm.value.searchTerm)" type="search" placeholder="Rechercher un produit">
+        </form>
+  
+      </div>
+      <div class="btn-group">
+        <button type="button" (click)="getProducts()" class="btn btn-info">
+          <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
+        </button>
+  
+      </div>
+  
+    </div>
+    <br>
+    <div class="container">
+      <table id="table_id" class="table ">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Prix</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <th scope="row"> {{product.idProd}}</th>
+            <td scope="row"><img class="rounded-circle img-fluid img-thumbnail" height="40" width="40"
+                src="{{urlPict+product.urlImage}}" alt=""></td>
+            <td scope="row">{{product.name}}</td>
+            <td scope="row">{{product.description}}</td>
+            <td scope="row">{{product.stock}}</td>
+            <td scope="row">{{product.price }}€</td>
+  
+            <td>
+              <div class="btn-group">
+                <a routerLink="/admin/editproduct/{{product.uid}}"
+                  class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
+                </a>
+  
+                <button class="btn btn-danger" (click)="onDeleteProduct(product.uid)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+  
+      </table>
+    </div>
+  </div>

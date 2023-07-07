@@ -1,0 +1,62 @@
+<div class="container border">
+
+  <br>
+  <H1 class="text-center">Liste des commandes</H1>
+
+
+  <div class="mb-3 float-right">
+    <div class="btn-group mr-2">
+
+      <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
+        <!-- On appelle la fonction search  -->
+        <input name="searchTerm" class="form-control mr-sm-2" ngModel
+          (ngModelChange)="searchOrders(searchForm.value.searchTerm)" type="search"
+          placeholder="Rechercher une commande">
+      </form>
+
+    </div>
+    <div class="btn-group">
+      <button type="button" (click)="getOrders()" class="btn btn-info">
+        <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
+      </button>
+
+    </div>
+
+  </div>
+  <br>
+  <div class="container">
+    <table id="table_id" class="table ">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nom Complet</th>
+          <th scope="col">Reference</th>
+          <th scope="col">Date</th>
+          <th scope="col">Total</th>
+          <th scope="col">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <th scope="row"> {{order.idOrder}}</th>
+          <td scope="row">{{order.userLastName}} {{order.userFirstName}}</td>
+          <td scope="row">{{order.refOrder}}</td>
+          <td scope="row">{{order.dateOrder|date}}</td>
+          <td scope="row">{{order.total}}€</td>
+
+
+          <td>
+            <div class="btn-group">
+              <a routerLink="/admin/showOrderLine/{{order.idOrder}}"
+                class="btn btn-warning waves-effect waves-light btn right #e65100 green"><i class="fas fa-edit"></i>
+              </a>
+
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
