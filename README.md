@@ -1,4 +1,4 @@
-# MomentoflifeAngular
+# EshopAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Commandes et instructions a effectuer pour initialisation du projet
+npm install pour installer les packages
+PS : en cas de soucis avec le package.json (mise a jour des dependence qui échoue crée un nouveau projet a coter avec les caracteristique de celui ci donc Y pour routing , et selectionner CSS)
+npm install @auth0/angular-jwt
+npm install ts-md5
+npm install jquery
+npm install Bootstrap
+npm install angular-notifier
+
+Lancer ng serve ! 
+
+
